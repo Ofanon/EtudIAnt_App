@@ -198,4 +198,5 @@ def get_leaderboard(limit=5):
         LIMIT ?
     """, (limit,))
     return cursor.fetchall()
+
 create_db()
