@@ -72,7 +72,6 @@ if st.session_state.revision_sheet_created:
             else:
                 st.write(st.session_state.revision_sheet)
             word_folder = create_revision_sheet(title=f"Fiche de révision en {st.session_state.revision_subject}", text=st.session_state.revision_sheet)
-            button = st.form_submit_button()
             st.download_button(
                 label="📥 Télécharger la fiche en fromat Word",
                 data=word_folder,
