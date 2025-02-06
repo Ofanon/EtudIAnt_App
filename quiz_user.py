@@ -12,6 +12,8 @@ st.title("🎯 Quiz des points faibles")
 
 st.subheader("Es-tu prêt à commencer le quiz des points faibles ?")
 
+st.write("Ce quiz va te permettre de **t'entrainer sur la matière que tu aimes le moins**.")
+
 def create_questions(level, subject):
     with st.spinner("La création du quiz des points faibles est en cours...") :
         response_ai = model.generate_content(f"Crée un QCM de 10 questions de niveau {level} en {subject}. Le quiz doit porter sur des chapitres compliqués de l'année. Toutes les réponses doivent être dans un container JSON avec : question_number , question , choices , correct_answer , explanation.")
