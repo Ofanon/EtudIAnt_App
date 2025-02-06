@@ -8,7 +8,7 @@ import random
 genai.configure(api_key=st.secrets[random.choice(["API_KEY1", "API_KEY2","API_KEY3", "API_KEY4"])])
 model = genai.GenerativeModel(model_name="gemini-1.5-flash-002")
 
-st.title("🎯 Quiz des points faibles")
+st.title("🤯 Quiz des points faibles")
 
 def create_questions(level, subject):
     with st.spinner("La création du quiz des points faibles est en cours...") :
