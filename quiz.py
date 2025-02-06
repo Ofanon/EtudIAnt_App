@@ -75,8 +75,6 @@ if "started" in st.session_state:
     if st.session_state.started:
         if not st.session_state.question_count > st.session_state.questions_number - 1:
             st.progress(st.session_state.question_count/st.session_state.questions_number)
-            st.write(st.session_state.question_count)
-
             disable_radio = st.session_state.verified
             disable_verify = st.session_state.verified
             st.subheader(st.session_state.question)
