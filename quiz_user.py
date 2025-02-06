@@ -45,7 +45,7 @@ with st.spinner("La page est en cours de chargement..."):
 if not st.session_state.started:
     st.subheader("Es-tu prêt à commencer le quiz des points faibles ?")
     st.write("Ce quiz va te permettre de **t'entrainer sur la matière que tu aimes le moins** !")
-    st.success("**Bientôt disponible : Quiz sur les réponses que tu as raté.**")
+    st.success("**Bientôt disponible : Quiz des réponses que tu as raté.**")
 
 disable_buttons = False
 if "started" in st.session_state:
