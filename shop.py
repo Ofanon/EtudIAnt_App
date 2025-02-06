@@ -7,7 +7,7 @@ st.subheader(f"Que veux-tu acheter {st.session_state.user_id} ?")
 st.write(f"**🔥 Points d'Experience : {user_manager.get_any_user_data(user_id=st.session_state.user_id, column="xp")}**")
 st.write(f"**⭐ Etoiles : {user_manager.get_any_user_data(user_id=st.session_state.user_id, column="credits")}**")
 
-col1, col2, col3 = st.columns(3)
+col1, col2, col3 = st.columns(3, border=True)
 
 with col1:
     st.image(image="5_Stars.png", width=140)
