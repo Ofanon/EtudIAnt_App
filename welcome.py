@@ -1,7 +1,7 @@
 import streamlit as st
 import user_manager
 
-st.title("Connexion à l'EtudIAnt")
+st.title("🤖 Connexion à l'EtudIAnt")
 
 if "connexion_type" not in st.session_state:
     st.session_state.connexion_type = "connect"
