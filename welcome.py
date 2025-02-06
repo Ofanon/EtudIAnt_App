@@ -23,7 +23,6 @@ if not st.session_state.connect_questions_user:
                         st.session_state.user_id = id
                         if user_manager.is_user_profile_complete(user_id=st.session_state.user_id):
                             st.balloons()
-                            st.write(user_manager.get_user_data(st.session_state.user_id))
                             st.session_state.user_connected = True
                             st.session_state.pages = main_pages
                             st.rerun()
