@@ -116,7 +116,7 @@ if "started" in st.session_state:
             st.subheader(f"Ta note est de {st.session_state.note}/20 !")
             st.balloons()
             if st.button("Refaire un autre quiz"):
-                user_manager.add_xp(user_id=st.session_state.user_id, points=150)
+                user_manager.add_xp(user_id=st.session_state.user_id, points=50)
                 del st.session_state.started
                 st.session_state.can_start = False
                 st.rerun()

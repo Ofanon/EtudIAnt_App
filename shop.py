@@ -38,9 +38,9 @@ with col3:
             st.error("Pas assez de Points d'Experience 🔥.")
 
 st.subheader("🎁 Cadeau quotidient")
-st.write("Récupère **5 ⭐ gratuitement** chaque jour ici !")
+st.write("Récupère **2 ⭐ gratuitement** chaque jour ici !")
 
-if st.button("🎁 Récuperer 5 Etoiles gratuites", disabled=not user_manager.can_spin_wheel(user_id=st.session_state.user_id)):
+if st.button("🎁 Récuperer 2 Etoiles gratuites", disabled=not user_manager.can_spin_wheel(user_id=st.session_state.user_id)):
     user_manager.update_date_spin_wheel(user_id=st.session_state.user_id)
     user_manager.reset_daily_credits(user_id=st.session_state.user_id)
     st.success("Les 5 Etoiles quotidiennes ont bien été ajoutées !")
