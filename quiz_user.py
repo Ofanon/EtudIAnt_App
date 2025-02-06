@@ -54,7 +54,7 @@ if "started" in st.session_state:
         st.session_state.can_start = False
         st.write(f"**Prix : 1 ⭐**")
         if st.button("🚀 Commencer le quiz", disabled=st.session_state.can_start):
-            if user_manager.use_credit(user_id=st.session_state.user_id, credits_to_use=round(st.session_state.questions_number/8.5)):
+            if user_manager.use_credit(user_id=st.session_state.user_id, credits_to_use=1):
                 disable_buttons = True
                 st.session_state.can_start = True
                 st.session_state.data = create_questions(level=user_manager.get_any_user_data(user_id=st.session_state.user_id, column="class_level"), subject=user_manager.get_any_user_data(user_id=st.session_state.user_id, column="least_favorite_subject"))
