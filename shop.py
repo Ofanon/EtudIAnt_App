@@ -10,7 +10,7 @@ st.write(f"**⭐ Etoiles : {user_manager.get_any_user_data(user_id=st.session_st
 col1, col2, col3 = st.columns(3)
 
 with col1:
-    st.image(image="5_stars.png", width=140)
+    st.image(image="5_Stars.png", width=140)
     st.write("Prix : **800 🔥**")
     if st.button("Acheter **5 ⭐**"):
         if user_manager.add_credits(user_id=st.session_state.user_id, xp_used=800, amount=5):
@@ -19,7 +19,7 @@ with col1:
         else:
             st.error("Pas assez de Points d'Experience 🔥.")
 with col2:
-    st.image(image="10_stars.png", width=140)
+    st.image(image="10_Stars.png", width=140)
     st.write("Prix : **1580 🔥**")
     if st.button("Acheter **10 ⭐**"):
         if user_manager.add_credits(user_id=st.session_state.user_id, xp_used=1580, amount=10):
@@ -28,7 +28,7 @@ with col2:
         else:
             st.error("Pas assez de Points d'Experience 🔥.")
 with col3:
-    st.image(image="20_stars.png", width=140)
+    st.image(image="20_Stars.png", width=140)
     st.write("Prix : **3000 🔥**")
     if st.button("Acheter **20 ⭐**"):
         if user_manager.add_credits(user_id=st.session_state.user_id, xp_used=3000, amount=20):
