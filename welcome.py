@@ -13,23 +13,6 @@ if "connexion_type" not in st.session_state:
 main_pages = [st.Page("main.py", title="🏠 Accueil"), st.Page("shop.py", title="🛒 Boutique"), st.Page("quiz.py", title="🎯 Quiz Interactif"), st.Page("quiz_user.py", title="🤯 Quiz des points faibles"), st.Page("revision_sheet.py", title="📝 Créateur de fiche de révision"), st.Page("leaderboard.py", title="🏆 Leaderboard")]
 questions_page = [st.Page("questions_user.py", title="Questions")]
 
-st.markdown("""
-    <style>
-    .stButton>button {
-        background-color: #FF5733;
-        color: white;
-        font-size: 18px;
-        border-radius: 10px;
-        padding: 10px 20px;
-        transition: 0.3s;
-    }
-    .stButton>button:hover {
-        background-color: #C70039;
-        transform: scale(1.05);
-    }
-    </style>
-""", unsafe_allow_html=True)
-
 if not st.session_state.connect_questions_user:
     if st.session_state.connexion_type == "connect":
         with st.form("connect_form"):
