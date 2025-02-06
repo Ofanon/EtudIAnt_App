@@ -9,7 +9,8 @@ genai.configure(api_key=st.secrets[random.choice(["API_KEY1", "API_KEY2","API_KE
 model = genai.GenerativeModel(model_name="gemini-1.5-flash-002")
 
 st.title("🎯 Quiz des points faibles")
-st.write(user_manager.get_any_user_data(user_id=st.session_state.user_id, column="least_favorite_subject"))
+
+st.subheader("Es-tu prêt à commencer le quiz des points faibles ?")
 
 def create_questions(level, subject):
     with st.spinner("La création du quiz des points faibles est en cours...") :
