@@ -12,7 +12,8 @@ st.title("🎯 Quiz des points faibles")
 
 st.subheader("Es-tu prêt à commencer le quiz des points faibles ?")
 
-st.write("Ce quiz va te permettre de **t'entrainer sur la matière que tu aimes le moins**.")
+st.write("Ce quiz va te permettre de **t'entrainer sur la matière que tu aimes le moins** !")
+st.write("Bientôt disponible : Quiz sur les réponses que tu as raté.")
 
 def create_questions(level, subject):
     with st.spinner("La création du quiz des points faibles est en cours...") :
