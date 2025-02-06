@@ -10,16 +10,6 @@ if "connexion_type" not in st.session_state:
     st.session_state.user_id = None
     st.session_state.connect_questions_user = False
 
-
-# Charger l'animation Lottie
-def load_lottieurl(url):
-    r = requests.get(url)
-    if r.status_code != 200:
-        return None
-    return r.json()
-
-lottie_robot = load_lottieurl("https://assets9.lottiefiles.com/packages/lf20_jcikwtux.json")
-
 main_pages = [st.Page("main.py", title="🏠 Accueil"), st.Page("shop.py", title="🛒 Boutique"), st.Page("quiz.py", title="🎯 Quiz Interactif"), st.Page("quiz_user.py", title="🤯 Quiz des points faibles"), st.Page("revision_sheet.py", title="📝 Créateur de fiche de révision"), st.Page("leaderboard.py", title="🏆 Leaderboard")]
 questions_page = [st.Page("questions_user.py", title="Questions")]
 
