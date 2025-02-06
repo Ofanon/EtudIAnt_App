@@ -34,7 +34,7 @@ if not st.session_state.connect_questions_user:
                         st.error("L'identifiant ou le mot de passe est incorrect.")
                 else:
                     st.error("Remplis tous les champs.")
-            if st.form_submit_button("Pas de compte ? En créer un", type="tertiary"):
+            if st.form_submit_button("❓ Pas de compte ? En créer un", type="tertiary"):
                 st.session_state.connexion_type = "create_account"
                 st.rerun()
 
@@ -53,6 +53,6 @@ if not st.session_state.connect_questions_user:
                         st.error("Cet identifiant existe déjà.")
                 else:
                     st.error("Remplis tous les champs.")
-            if st.form_submit_button("Déjà un compte ? Se connecter", type="tertiary"):
+            if st.form_submit_button("❓ Déjà un compte ? Se connecter", type="tertiary"):
                 st.session_state.connexion_type = "connect"
                 st.rerun()
