@@ -65,20 +65,21 @@ if not st.session_state.revision_sheet_created:
             st.error("Remplis tous les champs obligatoires.")
 
 if st.session_state.revision_sheet_created:
-        with st.form(key="sheet_form"):
+        with st.container(border=True):
             if not st.session_state.sheet_already_written:
                 stream_text(text=st.session_state.revision_sheet)
                 st.session_state.sheet_already_written = True
             else:
                 st.write(st.session_state.revision_sheet)
             word_folder = create_revision_sheet(title=f"Fiche de révision en {st.session_state.revision_subject}", text=st.session_state.revision_sheet)
-            if st.form_submit_button("📝 Créer une autre fiche de révision"):
-                del st.session_state.revision_sheet_created
-                st.rerun()
-        st.download_button(
+            button = st.form_submit_button()
+            st.download_button(
                 label="📥 Télécharger la fiche en fromat Word",
                 data=word_folder,
                 file_name=f"{st.session_state.revision_subject}.docx",
                 mime="text/docx"
             )
+            if st.button("📝 Créer une autre fiche de révision"):
+                del st.session_state.revision_sheet_created
+                st.rerun()
             
