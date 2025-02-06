@@ -22,7 +22,7 @@ from docx import Document
 from io import BytesIO
 
 def create_revision_sheet(title, text):
-    final_text = re.sub(r"\#*", "", text)
+    final_text = re.sub(r'["#*"]', "", text)
     doc = Document()
     doc.add_heading(title, level=1)
     doc.add_paragraph(final_text)
