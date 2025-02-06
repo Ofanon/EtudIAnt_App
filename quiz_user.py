@@ -10,7 +10,7 @@ model = genai.GenerativeModel(model_name="gemini-1.5-flash-002")
 
 st.title("🎯 Quiz des points faibles")
 
-def create_questions(level, subject, prompt):
+def create_questions(level, subject):
     with st.spinner("La création du quiz des points faibles est en cours...") :
         response_ai = model.generate_content(f"Crée un QCM de 10 questions de niveau {level} en {subject}. Le quiz doit porter sur des chapitres compliqués de l'année. Toutes les réponses doivent être dans un container JSON avec : question_number , question , choices , correct_answer , explanation.")
     match = re.search(r'\[.*\]', response_ai.text, re.DOTALL)
