@@ -140,7 +140,7 @@ def use_credit(user_id, credits_to_use):
 def reset_daily_credits(user_id):
     conn = sqlite3.connect(DB_FILE)
     cursor = conn.cursor()
-    cursor.execute("UPDATE users SET credits = credits + 2 WHERE user_id = ?", (user_id,))
+    cursor.execute("UPDATE users SET credits = credits + 3 WHERE user_id = ?", (user_id,))
     conn.commit()
     conn.close()
 
