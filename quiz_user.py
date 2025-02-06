@@ -10,11 +10,6 @@ model = genai.GenerativeModel(model_name="gemini-1.5-flash-002")
 
 st.title("🎯 Quiz des points faibles")
 
-st.subheader("Es-tu prêt à commencer le quiz des points faibles ?")
-
-st.write("Ce quiz va te permettre de **t'entrainer sur la matière que tu aimes le moins** !")
-st.success("**Bientôt disponible : Quiz sur les réponses que tu as raté.**")
-
 def create_questions(level, subject):
     with st.spinner("La création du quiz des points faibles est en cours...") :
         response_ai = model.generate_content(f"Crée un QCM de 10 questions de niveau {level} en {subject}. Le quiz doit porter sur des chapitres compliqués de l'année. Toutes les réponses doivent être dans un container JSON avec : question_number , question , choices , correct_answer , explanation.")
@@ -46,6 +41,11 @@ with st.spinner("La page est en cours de chargement..."):
         st.session_state.explanation = None
         st.session_state.note = None
         st.session_state.points = None
+
+if not st.session_state.started:
+    st.subheader("Es-tu prêt à commencer le quiz des points faibles ?")
+    st.write("Ce quiz va te permettre de **t'entrainer sur la matière que tu aimes le moins** !")
+    st.success("**Bientôt disponible : Quiz sur les réponses que tu as raté.**")
 
 disable_buttons = False
 if "started" in st.session_state:
