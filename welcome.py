@@ -3,6 +3,14 @@ import user_manager
 import requests
 from streamlit_lottie import st_lottie
 
+st.title("🤖 Connexion à l'EtudIAnt")
+
+if "connexion_type" not in st.session_state:
+    st.session_state.connexion_type = "connect"
+    st.session_state.user_id = None
+    st.session_state.connect_questions_user = False
+
+
 # Charger l'animation Lottie
 def load_lottieurl(url):
     r = requests.get(url)
@@ -11,12 +19,6 @@ def load_lottieurl(url):
     return r.json()
 
 lottie_robot = load_lottieurl("https://assets9.lottiefiles.com/packages/lf20_jcikwtux.json")
-st.title("🤖 Connexion à l'EtudIAnt")
-
-if "connexion_type" not in st.session_state:
-    st.session_state.connexion_type = "connect"
-    st.session_state.user_id = None
-    st.session_state.connect_questions_user = False
 
 main_pages = [st.Page("main.py", title="🏠 Accueil"), st.Page("shop.py", title="🛒 Boutique"), st.Page("quiz.py", title="🎯 Quiz Interactif"), st.Page("quiz_user.py", title="🤯 Quiz des points faibles"), st.Page("revision_sheet.py", title="📝 Créateur de fiche de révision"), st.Page("leaderboard.py", title="🏆 Leaderboard")]
 questions_page = [st.Page("questions_user.py", title="Questions")]
