@@ -57,7 +57,7 @@ if "started_user" in st.session_state:
             else:
                 st.error("Tu as utilisé toutes tes Etoiles, reviens demain pour utiliser l'EtudIAnt.")
         
-        if "data" in st.session_state and st.session_state.data_user:
+        if "data_user" in st.session_state and st.session_state.data_user:
             st.session_state.current_question_user = st.session_state.data_user[st.session_state.question_count_user]
             st.session_state.question_user = st.session_state.current_question_user['question']
             st.session_state.choices_user = st.session_state.current_question_user['choices']
