@@ -128,7 +128,7 @@ def use_credit(user_id, credits_to_use=1):
     cursor.execute("SELECT credits FROM users WHERE user_id = ?", (user_id,))
     credits = cursor.fetchone()
 
-    if credits and credits[0] - credits_to_use > 0:
+    if credits and credits[0] >= credits_to_use:
         cursor.execute("UPDATE users SET credits = credits - ? WHERE user_id = ?", (credits_to_use, user_id))
         conn.commit()
         conn.close()
