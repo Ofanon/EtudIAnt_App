@@ -68,7 +68,7 @@ if "started" in st.session_state:
 
     if st.session_state.started:
         if not st.session_state.question_count > 9:
-            st.progress(st.session_state.question_count/st.session_state.questions_number)
+            st.progress(st.session_state.question_count/10)
             disable_radio = st.session_state.verified
             disable_verify = st.session_state.verified
             st.subheader(st.session_state.question)
@@ -105,7 +105,7 @@ if "started" in st.session_state:
                     else:
                         st.rerun()
         else:
-            st.session_state.note = round((st.session_state.correct_answers / st.session_state.questions_number) * 20)
+            st.session_state.note = round((st.session_state.correct_answers / 10) * 20)
             st.subheader(f"Bravo ! Le quiz est terminé !")
             st.subheader(f"Ta note est de {st.session_state.note}/20 !")
             st.balloons()
