@@ -122,7 +122,7 @@ def add_credits(user_id, xp_used, amount):
         conn.commit()
         conn.close()
 
-def use_credit(user_id, credits_to_use):
+def use_credit(user_id, credits_to_use=1):
     conn = sqlite3.connect(DB_FILE)
     cursor = conn.cursor()
     cursor.execute("SELECT credits FROM users WHERE user_id = ?", (user_id,))
