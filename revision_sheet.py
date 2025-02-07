@@ -73,7 +73,7 @@ if st.session_state.revision_sheet_created:
                 st.write(st.session_state.revision_sheet)
             word_folder = create_revision_sheet(title=f"Fiche de révision en {st.session_state.revision_subject}", text=st.session_state.revision_sheet)
             st.download_button(
-                label="📥 Télécharger la fiche en fromat Word",
+                label="📥 Télécharger la fiche de révision en format Word",
                 data=word_folder,
                 file_name=f"{st.session_state.revision_subject}.docx",
                 mime="text/docx"
