@@ -38,7 +38,7 @@ with st.spinner("La page est en cours de chargement..."):
         st.session_state.note_user = None
         st.session_state.points_user = None
 
-if not st.session_state.started:
+if not st.session_state.started_user:
     st.subheader("Es-tu prêt(e) à commencer le quiz des points faibles ?")
     st.write("Ce quiz va te permettre de **t'entrainer sur la matière que tu aimes le moins** !")
     st.success("**Bientôt disponible : Quiz des réponses que tu as raté.**")
@@ -46,7 +46,7 @@ if not st.session_state.started:
 disable_buttons = False
 if "started" in st.session_state:
 
-    if not st.session_state.started:
+    if not st.session_state.started_user:
         st.session_state.can_start = False
         st.write(f"**Prix : 1 ⭐**")
         if st.button("🚀 Commencer le quiz", disabled=st.session_state.can_start):
@@ -63,10 +63,10 @@ if "started" in st.session_state:
             st.session_state.choices = st.session_state.current_question['choices']
             st.session_state.correct_answer = st.session_state.current_question['correct_answer']
             st.session_state.explanation = st.session_state.current_question['explanation']
-            st.session_state.started = True
+            st.session_state.started_user = True
             st.rerun()
 
-    if st.session_state.started:
+    if st.session_state.started_user:
         if not st.session_state.question_count > 9:
             st.progress(st.session_state.question_count/st.session_state.questions_number)
             disable_radio = st.session_state.verified
@@ -111,6 +111,6 @@ if "started" in st.session_state:
             st.balloons()
             if st.button("Refaire un autre quiz"):
                 user_manager.add_xp(user_id=st.session_state.user_id, points=150)
-                del st.session_state.started
+                del st.session_state.started_user
                 st.session_state.can_start = False
                 st.rerun()
