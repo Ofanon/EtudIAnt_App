@@ -57,7 +57,7 @@ if not st.session_state.revision_sheet_created:
                 if difficulty_user:
                     optional_prompt = f"L'utilisateur a du mal avec : {difficulty_user}. Concentre toi là dessus."
                 with st.spinner("L'EtudIAnt réfléchit..."):
-                    response = model.generate_content(f"Crée une petite fiche de révision de niveau {user_manager.get_any_user_data(user_id=st.session_state.user_id, column="class_level")} qui peut tenir sur une feuille A4 et de sujet : {subject}. Sans tableaux. {optional_prompt}", generation_config={"max_output_tokens": 1200})
+                    response = model.generate_content(f"Crée une petite fiche de révision de niveau {user_manager.get_any_user_data(user_id=st.session_state.user_id, column="class_level")} qui peut tenir sur une feuille A4 et de sujet : {subject}. Sans tableaux. {optional_prompt}")
                 st.session_state.revision_sheet = response.text
                 st.session_state.revision_sheet_created = True
             else:
