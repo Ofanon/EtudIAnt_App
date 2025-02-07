@@ -1,8 +1,10 @@
 import sqlite3
 import hashlib
 from datetime import datetime
+import os
 
-DB_FILE = "data/users.db"
+DB_FOLDER = "data"
+DB_FILE = os.path.join(DB_FOLDER, "users.db")
 
 def create_db():
     """Crée ou met à jour la base de données avec les nouvelles colonnes."""
