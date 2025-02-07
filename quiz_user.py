@@ -27,7 +27,7 @@ with st.spinner("La page est en cours de chargement..."):
         st.session_state.xp_updated_user = False
         st.session_state.current_question_user = None
         st.session_state.question_count_user_user = 0
-        st.session_state.started_user = False
+        st.session_state.started = False
         st.session_state.data_user = None
         st.session_state.question_user = None
         st.session_state.choices_user = None
