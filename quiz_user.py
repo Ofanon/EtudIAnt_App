@@ -38,7 +38,7 @@ with st.spinner("La page est en cours de chargement..."):
         st.session_state.note_user = None
         st.session_state.points_user = None
 
-if not st.session_state.started_user: 
+if not st.session_state.started_user:
     st.subheader("Es-tu prêt(e) à commencer le quiz des points faibles ?")
     st.write("Ce quiz va te permettre de **t'entrainer sur la matière que tu aimes le moins** !")
     st.success("**Bientôt disponible : Quiz des réponses que tu as raté.**")
@@ -47,70 +47,70 @@ disable_buttons = False
 if "started_user" in st.session_state:
 
     if not st.session_state.started_user:
-        st.session_state.can_start = False
+        st.session_state.can_start_user = False
         st.write(f"**Prix : 1 ⭐**")
-        if st.button("🚀 Commencer le quiz", disabled=st.session_state.can_start):
+        if st.button("🚀 Commencer le quiz", disabled=st.session_state.can_start_user):
             if user_manager.use_credit(user_id=st.session_state.user_id, credits_to_use=1):
                 disable_buttons = True
-                st.session_state.can_start = True
-                st.session_state.data = create_questions(level=user_manager.get_any_user_data(user_id=st.session_state.user_id, column="class_level"), subject=user_manager.get_any_user_data(user_id=st.session_state.user_id, column="least_favorite_subject"))
+                st.session_state.can_start_user = True
+                st.session_state.data_user = create_questions(level=user_manager.get_any_user_data(user_id=st.session_state.user_id, column="class_level"), subject=user_manager.get_any_user_data(user_id=st.session_state.user_id, column="least_favorite_subject"))
             else:
                 st.error("Tu as utilisé toutes tes Etoiles, reviens demain pour utiliser l'EtudIAnt.")
         
-        if "data" in st.session_state and st.session_state.data:
-            st.session_state.current_question = st.session_state.data[st.session_state.question_count]
-            st.session_state.question = st.session_state.current_question['question']
-            st.session_state.choices = st.session_state.current_question['choices']
-            st.session_state.correct_answer = st.session_state.current_question['correct_answer']
-            st.session_state.explanation = st.session_state.current_question['explanation']
+        if "data" in st.session_state and st.session_state.data_user:
+            st.session_state.current_question_user = st.session_state.data_user[st.session_state.question_count_user]
+            st.session_state.question_user = st.session_state.current_question_user['question']
+            st.session_state.choices_user = st.session_state.current_question_user['choices']
+            st.session_state.correct_answer_user = st.session_state.current_question_user['correct_answer']
+            st.session_state.explanation_user = st.session_state.current_question_user['explanation']
             st.session_state.started_user = True
             st.rerun()
 
     if st.session_state.started_user:
-        if not st.session_state.question_count > 9:
-            st.progress(st.session_state.question_count/st.session_state.questions_number)
-            disable_radio = st.session_state.verified
-            disable_verify = st.session_state.verified
-            st.subheader(st.session_state.question)
-            user_repsponse = st.radio("Sélectionne ta réponse :", st.session_state.choices, disabled=disable_radio)
+        if not st.session_state.question_count_user > 9:
+            st.progress(st.session_state.question_count_user/st.session_state.questions_number_user)
+            disable_radio = st.session_state.verified_user
+            disable_verify = st.session_state.verified_user
+            st.subheader(st.session_state.question_user)
+            user_repsponse = st.radio("Sélectionne ta réponse :", st.session_state.choices_user, disabled=disable_radio)
 
             if st.button("Verifier", disabled=disable_verify):
-                st.session_state.verified = True
+                st.session_state.verified_user = True
                 st.rerun()
 
-            if st.session_state.verified and not st.session_state.xp_updated:
-                if user_repsponse == st.session_state.correct_answer:
+            if st.session_state.verified_user and not st.session_state.xp_updated_user:
+                if user_repsponse == st.session_state.correct_answer_user:
                     user_manager.add_xp(user_id=st.session_state.user_id, points=30)
                     st.success("Bien joué, tu as trouvé la bonne réponse !")
-                    st.session_state.correct_answers += 1
-                    st.session_state.xp_updated = True
+                    st.session_state.correct_answers_user += 1
+                    st.session_state.xp_updated_user = True
 
                 else:
 
-                    st.error(f"Raté, la bonne réponse était : {st.session_state.correct_answer}")
-                st.write(st.session_state.explanation)
+                    st.error(f"Raté, la bonne réponse était : {st.session_state.correct_answer_user}")
+                st.write(st.session_state.explanation_user)
 
-            if st.session_state.verified == True:
+            if st.session_state.verified_user == True:
                 if st.button("Continuer"):
-                    st.session_state.verified = False
-                    st.session_state.question_count += 1
-                    if not st.session_state.question_count > 9:
-                        st.session_state.current_question = st.session_state.data[st.session_state.question_count] 
-                        st.session_state.question = st.session_state.current_question['question']
-                        st.session_state.choices = st.session_state.current_question['choices']
-                        st.session_state.correct_answer = st.session_state.current_question['correct_answer']
-                        st.session_state.explanation = st.session_state.current_question['explanation']
-                        st.session_state.xp_updated = False
+                    st.session_state.verified_user = False
+                    st.session_state.question_count_user += 1
+                    if not st.session_state.question_count_user > 9:
+                        st.session_state.current_question_user = st.session_state.data_user[st.session_state.question_count_user] 
+                        st.session_state.question_user = st.session_state.current_question_user['question']
+                        st.session_state.choices_user = st.session_state.current_question_user['choices']
+                        st.session_state.correct_answer_user = st.session_state.current_question_user['correct_answer']
+                        st.session_state.explanation_user = st.session_state.current_question_user['explanation']
+                        st.session_state.xp_updated_user = False
                         st.rerun()
                     else:
                         st.rerun()
         else:
-            st.session_state.note = round((st.session_state.correct_answers / st.session_state.questions_number) * 20)
+            st.session_state.note_user = round((st.session_state.correct_answers_user / st.session_state.questions_number_user) * 20)
             st.subheader(f"Bravo ! Le quiz est terminé !")
-            st.subheader(f"Ta note est de {st.session_state.note}/20 !")
+            st.subheader(f"Ta note est de {st.session_state.note_user}/20 !")
             st.balloons()
             if st.button("Refaire un autre quiz"):
                 user_manager.add_xp(user_id=st.session_state.user_id, points=150)
                 del st.session_state.started_user
-                st.session_state.can_start = False
+                st.session_state.can_start_user = False
                 st.rerun()
