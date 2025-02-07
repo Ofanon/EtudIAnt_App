@@ -24,19 +24,19 @@ def create_questions(level, subject):
 
 with st.spinner("La page est en cours de chargement..."):
     if "started" not in st.session_state:
-        st.session_state.xp_updated_user = False
-        st.session_state.current_question_user = None
-        st.session_state.question_count_user_user = 0
+        st.session_state.xp_updated= False
+        st.session_state.current_question = None
+        st.session_state.question_count = 0
         st.session_state.started = False
-        st.session_state.data_user = None
-        st.session_state.question_user = None
-        st.session_state.choices_user = None
-        st.session_state.correct_answer_user = 0
-        st.session_state.correct_answers_user = 0
-        st.session_state.verified_user = False
-        st.session_state.explanation_user = None
-        st.session_state.note_user = None
-        st.session_state.points_user = None
+        st.session_state.data = None
+        st.session_state.question = None
+        st.session_state.choices = None
+        st.session_state.correct_answer = 0
+        st.session_state.correct_answers = 0
+        st.session_state.verified = False
+        st.session_state.explanation = None
+        st.session_state.note = None
+        st.session_state.points = None
 
 if not st.session_state.started:
     st.subheader("Es-tu prêt(e) à commencer le quiz des points faibles ?")
