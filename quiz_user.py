@@ -12,7 +12,7 @@ st.title("🤯 Quiz des points faibles")
 
 def create_questions(level, subject):
     with st.spinner("La création du quiz des points faibles est en cours..."):
-        response_ai = model.generate_content(f"Crée un QCM de 10 questions de niveau {level} en {subject}. Le quiz doit porter sur des chapitres compliqués de l'année. Toutes les réponses doivent être dans un container JSON avec : question_number , question , choices , correct_answer , explanation.")
+        response_ai = model.generate_content(f"Crée un QCM de 10 questions de niveau {level} en {subject}. Le quiz doit porter sur des chapitres compliqués de l'année. Toutes les réponses doivent être dans un container JSON avec : question_number , question , choices , correct_answer , explanation.", generation_config={"max_output_tokens": 1200})
     match = re.search(r'\[.*\]', response_ai.text, re.DOTALL)
     if match:
             json_text = match.group(0)
