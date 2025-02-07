@@ -1,4 +1,4 @@
-data/user.db
+data/users.db
 
 __pycache__/
 *.pyc
