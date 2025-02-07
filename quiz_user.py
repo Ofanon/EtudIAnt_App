@@ -44,7 +44,7 @@ if not st.session_state.started_user:
     st.success("**Bientôt disponible : Quiz des réponses que tu as raté.**")
 
 disable_buttons = False
-if "started" in st.session_state:
+if "started_user" in st.session_state:
 
     if not st.session_state.started_user:
         st.session_state.can_start = False
