@@ -5,7 +5,7 @@ from streamlit_lottie import st_lottie
 
 st.title("🤖 Connexion à l'EtudIAnt")
 
-st.error("⚠️ Tous les identifiants ont été reinitialisé pour une meilleure gestion des utilisateurs. Connecte toi pour utiliser l'EtudIAnt.")
+st.error("⚠️ Tous les identifiants ont été reinitialisés pour une meilleure gestion des utilisateurs. Connecte toi pour utiliser l'EtudIAnt.")
 if "connexion_type" not in st.session_state:
     st.session_state.connexion_type = "connect"
     st.session_state.user_id = None
