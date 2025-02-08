@@ -81,10 +81,18 @@ def update_gift_date(user_id):
     cursor.execute("UPDATE users SET last_gift_date = %s WHERE user_id = %s;", (today, user_id))
     conn.commit()
 
-def get_leaderboard(limit=5):
+def get_leaderboard_answers(limit=5):
     cursor.execute("""
         SELECT user_id, corrects_answers FROM users
         ORDER BY corrects_answers DESC
+        LIMIT %s
+    """, (limit,))
+    return cursor.fetchall()
+
+def get_leaderboard_xp(limit=5):
+    cursor.execute("""
+        SELECT user_id, xp FROM users
+        ORDER BY xp DESC
         LIMIT %s
     """, (limit,))
     return cursor.fetchall()
