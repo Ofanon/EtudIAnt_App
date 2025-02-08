@@ -9,7 +9,6 @@ main_pages = [st.Page("main.py", title="🏠 Accueil"), st.Page("shop.py", title
 if "started_questions" not in st.session_state:
     with open("Robot.json", "r") as f:
         st.session_state.robot = json.load(f)
-        st_lottie(st.session_state.robot)
     st.session_state.started_questions = True
     st.session_state.questions_user_count = 0
     st.session_state.responses_user = {}
@@ -79,3 +78,7 @@ with col1:
         if st.button("Revenir en arrière", type="tertiary"):
             st.session_state.questions_user_count -= 1
             st.rerun()
+
+with col2:
+    if st.session_state.robot:
+        st_lottie(st.session_state.robot)
