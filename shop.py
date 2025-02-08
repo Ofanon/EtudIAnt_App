@@ -7,7 +7,7 @@ if "robot_star" not in st.session_state:
     with open("robot_star.json", "r") as f:
         st.session_state.robot_star = json.load(f)
 
-header_col1, header_col2 = st.columns([3, 1])
+header_col1, header_col2 = st.columns([3, 3])
 
 with header_col1:
     st.title("🛒 Boutique")
