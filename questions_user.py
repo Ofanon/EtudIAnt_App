@@ -1,6 +1,6 @@
 import streamlit as st
 import user_manager
-import sqlite3
+import psycopg2
 
 main_pages = [st.Page("main.py", title="🏠 Accueil"), st.Page("shop.py", title="🛒 Boutique"), st.Page("quiz.py", title="🎯 Quiz Interactif"), st.Page("quiz_user.py", title="🤯 Quiz des points faibles"), st.Page("revision_sheet.py", title="📝 Créateur de fiche de révision"), st.Page("leaderboard.py", title="🏆 Leaderboard")]
 if "started_questions" not in st.session_state:
@@ -51,9 +51,10 @@ if st.session_state.questions_user_count < len(st.session_state.questions_user) 
         st.rerun()
 else:
     if st.button("Terminer"):
-        conn = sqlite3.connect(user_manager.DB_FILE)
+        conn = psycopg2.connect(st.secrets["DATABASE_URL"])
+        cursor = conn.cursor()  
         cursor = conn.cursor()
-        cursor.execute("UPDATE users SET class_level = ?, favorite_subject = ?, least_favorite_subject = ? WHERE user_id = ?", (st.session_state.responses_user["response_q0"], st.session_state.responses_user["response_q1"], st.session_state.responses_user["response_q2"], st.session_state.user_id))
+        cursor.execute("UPDATE users SET class_level = %s, favorite_subject = %s, least_favorite_subject = %s WHERE user_id = %s", (st.session_state.responses_user["response_q0"], st.session_state.responses_user["response_q1"], st.session_state.responses_user["response_q2"], st.session_state.user_id))
         conn.commit()
         st.success(f"✅ C'est bon ! L'EtudIAnt est entrainé {st.session_state.user_id} !")
         st.balloons()
