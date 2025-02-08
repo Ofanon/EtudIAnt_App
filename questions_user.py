@@ -40,7 +40,7 @@ st.subheader(current_question["question"])
 
 response_key = f"response_q{st.session_state.questions_user_count}"
 st.session_state.responses_user[response_key] = st.radio(
-    "Fais ton choix :", current_question["choices"], 
+    "Fais ton choix :", current_question["choices"],
     index=current_question["choices"].index(st.session_state.responses_user.get(response_key, current_question["choices"][0])) if response_key in st.session_state.responses_user else 0
 )
 
@@ -48,6 +48,7 @@ st.session_state.responses_user[response_key] = st.radio(
 if st.session_state.questions_user_count < len(st.session_state.questions_user) - 1:
     if st.button("Continuer"):
         st.session_state.questions_user_count += 1
+        
         st.rerun()
 else:
     if st.button("Terminer"):
@@ -62,6 +63,7 @@ else:
         st.session_state.pages = main_pages
         st.session_state.connect_questions_user = False
         st.session_state.questions_user_count = 0
+        st.session_state.responses_user = {}
         st.rerun()
         
 if st.session_state.questions_user_count > 0:
