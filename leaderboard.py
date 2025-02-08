@@ -9,14 +9,14 @@ leaderboard = user_manager.get_leaderboard()
 if leaderboard:
     st.write("Voici le classement des 5 meilleurs joueurs :")
 
-    for i, (user_id, xp) in enumerate(leaderboard, start=1):
+    for i, (user_id, corrects_answers) in enumerate(leaderboard, start=1):
         if i == 1:
-            st.write(f"🥇 **{i}. {user_id}** - {xp} XP")  # Or met un style spécial pour le 1er
+            st.write(f"🥇 **{i}. {user_id}** - {corrects_answers} bonnes réponses")
         elif i == 2:
-            st.write(f"🥈 **{i}. {user_id}** - {xp} XP")
+            st.write(f"🥈 **{i}. {user_id}** - {corrects_answers} bonnes réponses")
         elif i == 3:
-            st.write(f"🥉 **{i}. {user_id}** - {xp} XP")
+            st.write(f"🥉 **{i}. {user_id}** - {corrects_answers} bonnes réponses")
         else:
-            st.write(f"✨ {i}. {user_id} - {xp} XP")
+            st.write(f"✨ {i}. {user_id} - {corrects_answers} bonnes réponses")
 else:
     st.write("Personne n'a encore gagné de points ! 🚀")
