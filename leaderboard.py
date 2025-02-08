@@ -6,33 +6,37 @@ st.title("🏆 Top 3 Leaderboard")
 # Récupérer le top 5
 leaderboard_answers = user_manager.get_leaderboard_answers(limit=3)
 leaderboard_xp = user_manager.get_leaderboard_xp(limit=3)
+col1, col2 = st.column(2)
 
-if leaderboard_answers:
-    st.write("Voici le classement des 3 joueurs avec le meilleur nombre de bonne réponses :")
+with col1:
+    if leaderboard_answers:
+        st.subheader("Classements des joueurs(euses) qui ont le plus de bonnes réponse :")
 
-    for i, (user_id, corrects_answers) in enumerate(leaderboard_answers, start=1):
-        if i == 1:
-            st.write(f"🥇 **{i}. {user_id}** - {corrects_answers} bonnes réponses")
-        elif i == 2:
-            st.write(f"🥈 **{i}. {user_id}** - {corrects_answers} bonnes réponses")
-        elif i == 3:
-            st.write(f"🥉 **{i}. {user_id}** - {corrects_answers} bonnes réponses")
-        else:
-            st.write(f"✨ {i}. {user_id} - {corrects_answers} bonnes réponses")
-else:
-    st.write("Personne n'a encore gagné de points ! 🚀")
+        for i, (user_id, corrects_answers) in enumerate(leaderboard_answers, start=1):
+            if i == 1:
+                st.write(f"🥇 **{i}. {user_id}** - {corrects_answers} bonnes réponses")
+            elif i == 2:
+                st.write(f"🥈 **{i}. {user_id}** - {corrects_answers} bonnes réponses")
+            elif i == 3:
+                st.write(f"🥉 **{i}. {user_id}** - {corrects_answers} bonnes réponses")
+            else:
+                st.write(f"✨ {i}. {user_id} - {corrects_answers} bonnes réponses")
+    else:
+        st.write("Personne n'a encore gagné de points ! 🚀")
 
-if leaderboard_xp:
-    st.write("Voici le classement des 3 joueurs avec le plus de Points d'Experience :")
+with col2:
+    if leaderboard_xp:
 
-    for i, (user_id, corrects_answers) in enumerate(leaderboard_xp, start=1):
-        if i == 1:
-            st.write(f"🥇 **{i}. {user_id}** - {corrects_answers} Points d'Experience")
-        elif i == 2:
-            st.write(f"🥈 **{i}. {user_id}** - {corrects_answers} Points d'Experience")
-        elif i == 3:
-            st.write(f"🥉 **{i}. {user_id}** - {corrects_answers} Points d'Experience")
-        else:
-            st.write(f"✨ {i}. {user_id} - {corrects_answers} Points d'Experience")
-else:
-    st.write("Personne n'a encore gagné de points ! 🚀")
+        st.subheader("Classements des joueurs(euses) qui ont le plus de Points d'Experience 🔥 :")
+
+        for i, (user_id, corrects_answers) in enumerate(leaderboard_xp, start=1):
+            if i == 1:
+                st.write(f"🥇 **{i}. {user_id}** - {corrects_answers} 🔥")
+            elif i == 2:
+                st.write(f"🥈 **{i}. {user_id}** - {corrects_answers} 🔥")
+            elif i == 3:
+                st.write(f"🥉 **{i}. {user_id}** - {corrects_answers} 🔥")
+            else:
+                st.write(f"✨ {i}. {user_id} - {corrects_answers} 🔥")
+    else:
+        st.write("Personne n'a encore gagné de points ! 🚀")
