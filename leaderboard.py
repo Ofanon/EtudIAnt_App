@@ -6,9 +6,9 @@ st.title("🏆 Top 3 Leaderboard")
 # Récupérer le top 5
 leaderboard_answers = user_manager.get_leaderboard_answers(limit=3)
 leaderboard_xp = user_manager.get_leaderboard_xp(limit=3)
-col1, col2 = st.columns(2)
+tab1, tab2 = st.tabs(tabs=["Classement par nombre de bonnes réponses", "Classement par nombre de Points d'Experience 🔥"])
 
-with col1:
+with tab1:
     if leaderboard_answers:
         st.subheader("Classements des joueurs(euses) qui ont le plus de bonnes réponse :")
 
@@ -24,7 +24,7 @@ with col1:
     else:
         st.write("Personne n'a encore gagné de points ! 🚀")
 
-with col2:
+with tab1:
     if leaderboard_xp:
 
         st.subheader("Classements des joueurs(euses) qui ont le plus de Points d'Experience 🔥 :")
