@@ -80,5 +80,8 @@ with col1:
             st.rerun()
 
 with col2:
-    if st.session_state.robot:
+    if "robot_animation_shown" not in st.session_state:
+        st.session_state.robot_animation_shown = False
+    if not st.session_state.robot_animation_shown and st.session_state.robot:
         st_lottie(st.session_state.robot)
+        st.session_state.robot_animation_shown = True
