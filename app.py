@@ -11,7 +11,7 @@ if st.session_state.user_connected is True:
         st.write(f"**⭐ Etoiles : {user_manager.get_any_user_data(user_id=st.session_state.user_id, column="credits")}**")
 
     with st.sidebar:
-        if st.button("🚪 Se deconnecter"):
+        if st.button("🚪 Se deconnecter", type="primary"):
             st.session_state.user_id = None
             st.session_state.pages = {}
             st.session_state.user_connected = False
