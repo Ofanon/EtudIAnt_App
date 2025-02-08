@@ -80,4 +80,4 @@ with col1:
             st.rerun()
 
 with col2:
-    st_lottie(st.session_state.robot, height=200, key="robot", loop=True)
+    st_lottie(st.session_state.robot, height=400, key="robot", loop=True)
