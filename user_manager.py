@@ -71,14 +71,14 @@ def use_credit(user_id, credits_to_use=1):
 
 def can_spin_wheel(user_id):
     today = datetime.now().strftime("%Y-%m-%d")
-    cursor.execute("SELECT last_spin_date FROM users WHERE user_id = %s;", (user_id,))
+    cursor.execute("SELECT last_gift_date FROM users WHERE user_id = %s;", (user_id,))
     row = cursor.fetchone()
 
     return not row or row[0] != today
 
 def update_date_spin_wheel(user_id):
     today = datetime.now().strftime("%Y-%m-%d")
-    cursor.execute("UPDATE users SET last_spin_date = %s WHERE user_id = %s;", (today, user_id))
+    cursor.execute("UPDATE users SET last_gift_date = %s WHERE user_id = %s;", (today, user_id))
     conn.commit()
 
 def get_leaderboard(limit=5):
