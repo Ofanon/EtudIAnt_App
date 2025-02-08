@@ -1,7 +1,7 @@
 import streamlit as st
 import user_manager
 
-st.title("🏆 Top 5 Leaderboard")
+st.title("🏆 Top 3 Leaderboard")
 
 # Récupérer le top 5
 leaderboard_answers = user_manager.get_leaderboard_answers(limit=3)
@@ -27,12 +27,12 @@ if leaderboard_xp:
 
     for i, (user_id, corrects_answers) in enumerate(leaderboard_xp, start=1):
         if i == 1:
-            st.write(f"🥇 **{i}. {user_id}** - {corrects_answers} bonnes réponses")
+            st.write(f"🥇 **{i}. {user_id}** - {corrects_answers} Points d'Experience")
         elif i == 2:
-            st.write(f"🥈 **{i}. {user_id}** - {corrects_answers} bonnes réponses")
+            st.write(f"🥈 **{i}. {user_id}** - {corrects_answers} Points d'Experience")
         elif i == 3:
-            st.write(f"🥉 **{i}. {user_id}** - {corrects_answers} bonnes réponses")
+            st.write(f"🥉 **{i}. {user_id}** - {corrects_answers} Points d'Experience")
         else:
-            st.write(f"✨ {i}. {user_id} - {corrects_answers} bonnes réponses")
+            st.write(f"✨ {i}. {user_id} - {corrects_answers} Points d'Experience")
 else:
     st.write("Personne n'a encore gagné de points ! 🚀")
