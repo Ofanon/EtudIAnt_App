@@ -3,7 +3,13 @@ import hashlib
 from datetime import datetime
 import streamlit as st
 
-conn = psycopg2.connect(st.secrets["DATABASE_URL"])
+conn = psycopg2.connect(
+    dbname="postgres",
+    user="postgres",
+    password="2xckEY7SmKX9HeE1",
+    host="db.kejtfopiaosjpmrstizv.supabase.co",
+    port="5432"
+)
 cursor = conn.cursor()
 
 def hash_password(password):

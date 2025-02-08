@@ -51,8 +51,13 @@ if st.session_state.questions_user_count < len(st.session_state.questions_user) 
         st.rerun()
 else:
     if st.button("Terminer"):
-        conn = psycopg2.connect(st.secrets["DATABASE_URL"])
-        cursor = conn.cursor()  
+        conn = psycopg2.connect(
+        dbname="postgres",
+        user="postgres",
+        password="2xckEY7SmKX9HeE1",
+        host="db.kejtfopiaosjpmrstizv.supabase.co",
+        port="5432"
+        ) 
         cursor = conn.cursor()
         cursor.execute("UPDATE users SET class_level = %s, favorite_subject = %s, least_favorite_subject = %s WHERE user_id = %s", (st.session_state.responses_user["response_q0"], st.session_state.responses_user["response_q1"], st.session_state.responses_user["response_q2"], st.session_state.user_id))
         conn.commit()
