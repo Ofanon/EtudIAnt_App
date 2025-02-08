@@ -83,8 +83,8 @@ def update_gift_date(user_id):
 
 def get_leaderboard(limit=5):
     cursor.execute("""
-        SELECT user_id, xp FROM users
-        ORDER BY xp DESC
+        SELECT user_id, corrects_answers FROM users
+        ORDER BY corrects_answers DESC
         LIMIT %s
     """, (limit,))
     return cursor.fetchall()
@@ -101,6 +101,15 @@ def get_any_user_data(user_id, column):
     cursor.execute(f"SELECT {column} FROM users WHERE user_id = %s;", (user_id,))
     data = cursor.fetchone()
     return data[0] if data else None
+
+def add_correct_incorrect_answer(user_id, correct=True):
+    if correct is True:
+        cursor.execute("UPDATE users SET corrects_answers = corrects_answers + 1 WHERE user_id = %s;", (user_id,))
+        conn.commit()
+    else:
+        cursor.execute("UPDATE users SET incorrects_answers = corrects_answers - 1 WHERE user_id = %s;", (user_id,))
+        conn.commit()
+
 
 def is_user_profile_complete(user_id):
     cursor.execute("""
