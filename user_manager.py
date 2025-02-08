@@ -67,7 +67,8 @@ def use_credit(user_id, credits_to_use=1):
         cursor.execute("UPDATE users SET credits = credits - %s WHERE user_id = %s;", (credits_to_use, user_id))
         conn.commit()
         return True
-    return False
+    else:
+        return False
 
 def can_get_gift(user_id):
     today = datetime.now().strftime("%Y-%m-%d")
