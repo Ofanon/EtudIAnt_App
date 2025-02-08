@@ -6,7 +6,7 @@ st.title("🏆 Top 3 Leaderboard")
 # Récupérer le top 5
 leaderboard_answers = user_manager.get_leaderboard_answers(limit=3)
 leaderboard_xp = user_manager.get_leaderboard_xp(limit=3)
-col1, col2 = st.column(2)
+col1, col2 = st.columns(2)
 
 with col1:
     if leaderboard_answers:
