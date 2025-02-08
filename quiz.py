@@ -88,7 +88,7 @@ if "started" in st.session_state:
                 if user_repsponse == st.session_state.correct_answer:
                     user_manager.add_xp(user_id=st.session_state.user_id, points=30)
                     st.success("Bien joué, tu as trouvé la bonne réponse !")
-                    st.session_state.correct_answers += 1
+                    st.session_state.correct_answers += 1   
                     st.session_state.xp_updated = True
 
                 else:
