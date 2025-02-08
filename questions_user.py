@@ -36,7 +36,7 @@ if "started_questions" not in st.session_state:
     ]
 
 if "robot" not in st.session_state:
-    with open("Robot.json","r") as f:
+    with open("robot.json","r") as f:
         st.session_state.robot = json.load(f)
 st.progress(st.session_state.questions_user_count/2)
 
