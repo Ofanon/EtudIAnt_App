@@ -12,7 +12,6 @@ if "started_questions" not in st.session_state:
     st.session_state.started_questions = True
     st.session_state.questions_user_count = 0
     st.session_state.responses_user = {}
-    st.session_state.robot_animation1 = None
     st.session_state.questions_user = [
         {
             "question_number": 1,
