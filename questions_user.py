@@ -7,8 +7,6 @@ import json
 
 main_pages = [st.Page("main.py", title="🏠 Accueil"), st.Page("shop.py", title="🛒 Boutique"), st.Page("quiz.py", title="🎯 Quiz Interactif"), st.Page("quiz_user.py", title="🤯 Quiz des points faibles"), st.Page("revision_sheet.py", title="📝 Créateur de fiche de révision"), st.Page("leaderboard.py", title="🏆 Leaderboard")]
 if "started_questions" not in st.session_state:
-    with open("Robot.json","r") as f:
-        st.session_state.robot = json.load(f)
     st.session_state.started_questions = True
     st.session_state.questions_user_count = 0
     st.session_state.responses_user = {}
@@ -37,6 +35,9 @@ if "started_questions" not in st.session_state:
         }
     ]
 
+if "robot" not in st.session_state:
+    with open("Robot.json","r") as f:
+        st.session_state.robot = json.load(f)
 st.progress(st.session_state.questions_user_count/2)
 
 current_question = st.session_state.questions_user[st.session_state.questions_user_count]
