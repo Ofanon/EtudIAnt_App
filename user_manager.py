@@ -89,6 +89,9 @@ def get_leaderboard(limit=5):
     """, (limit,))
     return cursor.fetchall()
 
+def reset_daily_credits(user_id):
+    cursor.execute("UPDATE users SET credits = credits + %s WHERE user_id = %s", (user_id,))
+    conn.commit()
 def get_user_data(user_id):
     cursor.execute("SELECT * FROM users WHERE user_id = %s;", (user_id,))
     return cursor.fetchone()
