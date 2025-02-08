@@ -1,11 +1,22 @@
 import streamlit as st
 import user_manager
+import json
+from streamlit_lottie import st_lottie
 
-st.title("🛒 Boutique")
-st.subheader(f"Que veux-tu acheter {st.session_state.user_id} ?")
+if "robot_star" not in st.session_state:
+    with open("robot_star.json", "r") as f:
+        st.session_state.robot_star = json.load(f)
 
-st.write(f"**🔥 Points d'Experience : {user_manager.get_any_user_data(user_id=st.session_state.user_id, column="xp")}**")
-st.write(f"**⭐ Etoiles : {user_manager.get_any_user_data(user_id=st.session_state.user_id, column="credits")}**")
+header_col1, header_col2 = st.columns([3, 1])
+
+with header_col1:
+    st.title("🛒 Boutique")
+    st.subheader(f"Que veux-tu acheter {st.session_state.user_id} ?")
+    st.write(f"**🔥 Points d'Experience : {user_manager.get_any_user_data(user_id=st.session_state.user_id, column="xp")}**")
+    st.write(f"**⭐ Etoiles : {user_manager.get_any_user_data(user_id=st.session_state.user_id, column="credits")}**")
+
+with header_col2:
+    st_lottie(st.session_state.robot_star, height=400, key="robot", loop=True)
 
 col1, col2, col3 = st.columns(3, border=True)
 
