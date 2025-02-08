@@ -90,7 +90,7 @@ def get_leaderboard(limit=5):
     return cursor.fetchall()
 
 def reset_daily_credits(user_id):
-    cursor.execute("UPDATE users SET credits = credits + 3 WHERE user_id = %s", (user_id,))
+    cursor.execute("UPDATE users SET credits = credits + 3 WHERE user_id = %s;", (user_id,))
     conn.commit()
 
 def get_user_data(user_id):
