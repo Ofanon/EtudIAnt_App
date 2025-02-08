@@ -40,8 +40,8 @@ with col3:
 st.subheader("🎁 Cadeau quotidient")
 st.write("Récupère **3 ⭐ gratuitement** chaque jour ici !")
 
-if st.button("🎁 Récuperer 3 Etoiles gratuites", disabled=not user_manager.can_spin_wheel(user_id=st.session_state.user_id)):
-    user_manager.update_date_spin_wheel(user_id=st.session_state.user_id)
+if st.button("🎁 Récuperer 3 Etoiles gratuites", disabled=not user_manager.can_get_gift(user_id=st.session_state.user_id)):
+    user_manager.update_gift_date(user_id=st.session_state.user_id)
     user_manager.reset_daily_credits(user_id=st.session_state.user_id)
     st.success("Les 3 Etoiles quotidiennes ont bien été ajoutées !")
     st.rerun()

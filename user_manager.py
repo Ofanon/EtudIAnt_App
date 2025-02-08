@@ -69,14 +69,14 @@ def use_credit(user_id, credits_to_use=1):
         return True
     return False
 
-def can_spin_wheel(user_id):
+def can_get_gift(user_id):
     today = datetime.now().strftime("%Y-%m-%d")
     cursor.execute("SELECT last_gift_date FROM users WHERE user_id = %s;", (user_id,))
     row = cursor.fetchone()
 
     return not row or row[0] != today
 
-def update_date_spin_wheel(user_id):
+def update_gift_date(user_id):
     today = datetime.now().strftime("%Y-%m-%d")
     cursor.execute("UPDATE users SET last_gift_date = %s WHERE user_id = %s;", (today, user_id))
     conn.commit()
