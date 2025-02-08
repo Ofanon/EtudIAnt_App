@@ -8,7 +8,7 @@ leaderboard_answers = user_manager.get_leaderboard_answers(limit=3)
 leaderboard_xp = user_manager.get_leaderboard_xp(limit=3)
 tab1, tab2 = st.tabs(tabs=["Classement par nombre de bonnes réponses", "Classement par nombre de Points d'Experience 🔥"])
 
-if tab1:
+with tab1:
     if leaderboard_answers:
         st.subheader("Classements des joueurs(euses) qui ont le plus de bonnes réponse :")
 
@@ -24,7 +24,7 @@ if tab1:
     else:
         st.write("Personne n'a encore gagné de points ! 🚀")
 
-elif tab1:
+with tab2:
     if leaderboard_xp:
 
         st.subheader("Classements des joueurs(euses) qui ont le plus de Points d'Experience 🔥 :")
