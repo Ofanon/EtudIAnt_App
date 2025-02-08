@@ -1,6 +1,14 @@
 import streamlit as st
 import user_manager
 import psycopg2
+import requests
+from streamlit_lottie import st_lottie
+
+def load_lottieurl(url: str):
+    r = requests.get(url)
+    if r.status_code != 200:
+        return None
+    return r.json()
 
 main_pages = [st.Page("main.py", title="🏠 Accueil"), st.Page("shop.py", title="🛒 Boutique"), st.Page("quiz.py", title="🎯 Quiz Interactif"), st.Page("quiz_user.py", title="🤯 Quiz des points faibles"), st.Page("revision_sheet.py", title="📝 Créateur de fiche de révision"), st.Page("leaderboard.py", title="🏆 Leaderboard")]
 if "started_questions" not in st.session_state:
@@ -35,38 +43,43 @@ if "started_questions" not in st.session_state:
 st.progress(st.session_state.questions_user_count/2)
 
 current_question = st.session_state.questions_user[st.session_state.questions_user_count]
+col1, col2 = st.columns(2)
 
-st.subheader(current_question["question"])
+with col1:
+    st.subheader(current_question["question"])
 
-response_key = f"response_q{st.session_state.questions_user_count}"
-st.session_state.responses_user[response_key] = st.radio(
-    "Fais ton choix :", current_question["choices"],
-    index=current_question["choices"].index(st.session_state.responses_user.get(response_key, current_question["choices"][0])) if response_key in st.session_state.responses_user else 0
-)
+    response_key = f"response_q{st.session_state.questions_user_count}"
+    st.session_state.responses_user[response_key] = st.radio(
+        "Fais ton choix :", current_question["choices"],
+        index=current_question["choices"].index(st.session_state.responses_user.get(response_key, current_question["choices"][0])) if response_key in st.session_state.responses_user else 0
+    )
 
 
-if st.session_state.questions_user_count < len(st.session_state.questions_user) - 1:
-    if st.button("Continuer"):
-        st.session_state.questions_user_count += 1
-        
-        st.rerun()
-else:
-    if st.button("Terminer"):
-        conn = psycopg2.connect(st.secrets["DATABASE_URL"]) 
-        cursor = conn.cursor()
-        cursor.execute("UPDATE users SET class_level = %s, favorite_subject = %s, least_favorite_subject = %s WHERE user_id = %s", (st.session_state.responses_user["response_q0"], st.session_state.responses_user["response_q1"], st.session_state.responses_user["response_q2"], st.session_state.user_id))
-        conn.commit()
-        st.success(f"✅ C'est bon ! L'EtudIAnt est entrainé {st.session_state.user_id} !")
-        st.balloons()
-        conn.close()
-        st.session_state.user_connected = True
-        st.session_state.pages = main_pages
-        st.session_state.connect_questions_user = False
-        st.session_state.questions_user_count = 0
-        st.session_state.responses_user = {}
-        st.rerun()
-        
-if st.session_state.questions_user_count > 0:
-    if st.button("Revenir en arrière", type="tertiary"):
-        st.session_state.questions_user_count -= 1
-        st.rerun()
+    if st.session_state.questions_user_count < len(st.session_state.questions_user) - 1:
+        if st.button("Continuer"):
+            st.session_state.questions_user_count += 1
+            
+            st.rerun()
+    else:
+        if st.button("Terminer"):
+            conn = psycopg2.connect(st.secrets["DATABASE_URL"]) 
+            cursor = conn.cursor()
+            cursor.execute("UPDATE users SET class_level = %s, favorite_subject = %s, least_favorite_subject = %s WHERE user_id = %s", (st.session_state.responses_user["response_q0"], st.session_state.responses_user["response_q1"], st.session_state.responses_user["response_q2"], st.session_state.user_id))
+            conn.commit()
+            st.success(f"✅ C'est bon ! L'EtudIAnt est entrainé {st.session_state.user_id} !")
+            st.balloons()
+            conn.close()
+            st.session_state.user_connected = True
+            st.session_state.pages = main_pages
+            st.session_state.connect_questions_user = False
+            st.session_state.questions_user_count = 0
+            st.session_state.responses_user = {}
+            st.rerun()
+            
+    if st.session_state.questions_user_count > 0:
+        if st.button("Revenir en arrière", type="tertiary"):
+            st.session_state.questions_user_count -= 1
+            st.rerun()
+
+with col2:
+    st_lottie("Robot.json", key="hello")
