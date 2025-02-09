@@ -5,7 +5,7 @@ import time
 import re
 import random
 
-genai.configure(api_key=st.secrets[random.choice(["API_KEY1", "API_KEY2","API_KEY3", "API_KEY4"])])
+genai.configure(api_key=st.secrets[random.choice(["API_KEY1", "API_KEY2"])])
 model = genai.GenerativeModel(model_name="gemini-1.5-flash-002")
 
 if "revision_sheet_created" not in st.session_state:
