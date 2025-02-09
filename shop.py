@@ -19,7 +19,6 @@ with header_col2:
     st_lottie(st.session_state.robot_star, height=400, key="robot", loop=True)
 
 col1, col2, col3 = st.columns(3, border=True)
-
 with col1:
     st.image(image="5_Stars.png", width=140)
     st.write("Prix : **1000 🔥**")
