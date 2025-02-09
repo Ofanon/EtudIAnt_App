@@ -22,27 +22,27 @@ col1, col2, col3 = st.columns(3, border=True)
 
 with col1:
     st.image(image="5_Stars.png", width=140)
-    st.write("Prix : **800 🔥**")
+    st.write("Prix : **1000 🔥**")
     if st.button("Acheter **5 ⭐**"):
-        if user_manager.add_credits(user_id=st.session_state.user_id, xp_used=800, amount=5):
+        if user_manager.add_credits(user_id=st.session_state.user_id, xp_used=1000, amount=5):
             st.success("Tu as 5 nouvelles Etoiles !")
             st.rerun()
         else:
             st.error("Pas assez de Points d'Experience 🔥.")
 with col2:
     st.image(image="10_Stars.png", width=140)
-    st.write("Prix : **1580 🔥**")
+    st.write("Prix : **2000 🔥**")
     if st.button("Acheter **10 ⭐**"):
-        if user_manager.add_credits(user_id=st.session_state.user_id, xp_used=1580, amount=10):
+        if user_manager.add_credits(user_id=st.session_state.user_id, xp_used=2000, amount=10):
             st.success("Tu as 20 nouvelles Etoiles !")
             st.rerun()
         else:
             st.error("Pas assez de Points d'Experience 🔥.")
 with col3:
     st.image(image="20_Stars.png", width=140)
-    st.write("Prix : **3000 🔥**")
+    st.write("Prix : **4000 🔥**")
     if st.button("Acheter **20 ⭐**"):
-        if user_manager.add_credits(user_id=st.session_state.user_id, xp_used=3000, amount=20):
+        if user_manager.add_credits(user_id=st.session_state.user_id, xp_used=4000, amount=20):
             st.success("Tu as 20 nouvelles Etoiles !")
             st.rerun()
         else:
