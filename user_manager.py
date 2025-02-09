@@ -112,12 +112,16 @@ def get_any_user_data(user_id, column):
     return data[0] if data else None
 
 def add_correct_incorrect_answer(user_id, correct=True):
-    if correct is True:
-        cursor.execute("UPDATE users SET corrects_answers = corrects_answers + 1 WHERE user_id = %s;", (user_id,))
-        conn.commit()
-    else:
-        cursor.execute("UPDATE users SET incorrects_answers = corrects_answers + 1 WHERE user_id = %s;", (user_id,))
-        conn.commit()
+    try:
+        if correct is True:
+            cursor.execute("UPDATE users SET corrects_answers = corrects_answers + 1 WHERE user_id = %s;", (user_id,))
+            conn.commit()
+        else:
+            cursor.execute("UPDATE users SET incorrects_answers = corrects_answers + 1 WHERE user_id = %s;", (user_id,))
+            conn.commit()
+        return True
+    except psycopg2.Error:
+        return False
 
 
 def is_user_profile_complete(user_id):
