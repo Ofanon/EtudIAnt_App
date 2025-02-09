@@ -6,10 +6,7 @@ from streamlit_lottie import st_lottie
 col1, col2 = st.columns(2)
 with col1:
     st.title("🏆 Top 3 Leaderboard")
-with col2:
-    st_lottie(st.session_state.robot_leaderboard, height=400, key="robot_leaderboard", loop=True)
 
-# Récupérer le top 5
 leaderboard_answers = user_manager.get_leaderboard_answers(limit=3)
 leaderboard_xp = user_manager.get_leaderboard_xp(limit=3)
 tab1, tab2 = st.tabs(tabs=["Classement par nombre de bonnes réponses", "Classement par nombre de Points d'Experience 🔥"])
@@ -17,6 +14,9 @@ tab1, tab2 = st.tabs(tabs=["Classement par nombre de bonnes réponses", "Classem
 if "robot_leaderboard" not in st.session_state:
     with open("robot_leaderboard.json","r") as f:
         st.session_state.robot_leaderboard = json.load(f)
+
+with col2:
+    st_lottie(st.session_state.robot_leaderboard, height=400, key="robot_leaderboard", loop=True)
 
 with tab1:
     if leaderboard_answers:
