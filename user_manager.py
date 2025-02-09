@@ -116,7 +116,7 @@ def add_correct_incorrect_answer(user_id, correct=True):
         cursor.execute("UPDATE users SET corrects_answers = corrects_answers + 1 WHERE user_id = %s;", (user_id,))
         conn.commit()
     else:
-        cursor.execute("UPDATE users SET incorrects_answers = corrects_answers - 1 WHERE user_id = %s;", (user_id,))
+        cursor.execute("UPDATE users SET incorrects_answers = corrects_answers + 1 WHERE user_id = %s;", (user_id,))
         conn.commit()
 
 
