@@ -8,7 +8,7 @@ if "pages" not in st.session_state:
 st.logo(image="etudiant_logo_title.png", icon_image="etudiant_icon_logoV2.png", size='large')
 if st.session_state.user_connected is True:
     with st.sidebar:
-        with st.container():
+        with st.container(border=True):
             st.markdown(f"**🔥 Points d'Experience : {user_manager.get_any_user_data(user_id=st.session_state.user_id, column="xp")}**")
             st.markdown(f"**⭐ Etoiles : {user_manager.get_any_user_data(user_id=st.session_state.user_id, column="credits")}**")
 
