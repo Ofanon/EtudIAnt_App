@@ -49,8 +49,8 @@ if "started" in st.session_state:
     if not st.session_state.started:
         st.session_state.can_start = False
         st.subheader("Sur quoi veux-tu créer ton quiz ?")
-        col1, col2 = st.columns(2)
         with st.container(border=True):
+            col1, col2 = st.columns(2)
             with col1:
                 subject = st.selectbox("📚 **Sélectionne la matière du quiz :** ", ["Français", "Mathématiques", "Histoire","Géographie","EMC", "Sciences et Vie de la Terre", "Physique Chimie","Technologie", "Anglais","Allemand", "Espagnol"], )
                 st.session_state.user_prompt = st.text_input("📝 **Le sujet du quiz :**", placeholder="Ex : sur la révolution", disabled=disable_buttons)
