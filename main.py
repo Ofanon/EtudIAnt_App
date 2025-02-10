@@ -1,6 +1,7 @@
 import streamlit as st
 from streamlit_lottie import st_lottie
 import json
+import user_manager
 
 if "robot_main" not in st.session_state:
     with open("robot_main.json","r") as f:
@@ -28,3 +29,5 @@ with col2:
 
 with col1:
     st_lottie(st.session_state.robot_main, height=400, key="robot_main", loop=True)
+
+st.title(f"Vous êtes {user_manager.get_users_number()} à utiliser l'EtudIAnt ! Merci de me faire confiance !")

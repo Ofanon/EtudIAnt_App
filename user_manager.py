@@ -123,6 +123,9 @@ def add_correct_incorrect_answer(user_id, correct=True):
     except psycopg2.Error:
         return False
 
+def get_users_number():
+    cursor.execute("SELECT COUNT(*) FROM users;")
+    return cursor.fetchone()[0]
 
 def is_user_profile_complete(user_id):
     cursor.execute("""
