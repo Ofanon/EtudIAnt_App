@@ -16,7 +16,7 @@ with header_col1:
     st.write(f"**⭐ Etoiles : {user_manager.get_any_user_data(user_id=st.session_state.user_id, column="credits")}**")
 
 with header_col2:
-    st_lottie(st.session_state.robot_star, height=400, key="robot", loop=True)
+    st_lottie(st.session_state.robot_star, height=200, key="robot", loop=True)
 
 with st.container():
     col1, col2, col3 = st.columns(3, border=True, vertical_alignment="bottom")
