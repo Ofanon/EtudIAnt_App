@@ -30,4 +30,4 @@ with col2:
 with col1:
     st_lottie(st.session_state.robot_main, height=400, key="robot_main", loop=True)
 
-st.title(f"Vous êtes {user_manager.get_users_number()+1} à utiliser l'EtudIAnt ! Merci de me faire confiance !")
+st.subheader(f"🤩 Vous êtes {user_manager.get_users_number()+1} à utiliser l'EtudIAnt ! Merci de me faire confiance !")
