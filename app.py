@@ -8,8 +8,9 @@ if "pages" not in st.session_state:
 st.logo(image="etudiant_logo_title.png", icon_image="etudiant_icon_logoV2.png", size='large')
 if st.session_state.user_connected is True:
     with st.sidebar:
-        st.write(f"**🔥 Points d'Experience : {user_manager.get_any_user_data(user_id=st.session_state.user_id, column="xp")}**")
-        st.write(f"**⭐ Etoiles : {user_manager.get_any_user_data(user_id=st.session_state.user_id, column="credits")}**")
+        with st.container():
+            st.markdown(f"**🔥 Points d'Experience : {user_manager.get_any_user_data(user_id=st.session_state.user_id, column="xp")}**")
+            st.markdown(f"**⭐ Etoiles : {user_manager.get_any_user_data(user_id=st.session_state.user_id, column="credits")}**")
 
     with st.sidebar:
         if st.button("🚪 Se deconnecter", type="primary"):
