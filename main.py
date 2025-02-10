@@ -10,7 +10,7 @@ st.title("📚 Bienvenue dans **l'EtudIAnt** ! 🤖")
 
 col1, col2 = st.columns(2)
 
-with col1:
+with col2:
     st.subheader("🎯 Comment ça marche ?")
     st.markdown("""
     - **L'EtudIAnt** est une **Intelligence Artificielle** basée sur le modèle d'IA de Google.
@@ -22,5 +22,5 @@ with col1:
 
     st.success("Bon apprentissage et amuse-toi bien ! 🎉")
 
-with col2:
+with col1:
     st_lottie(st.session_state.robot_main, height=400, key="robot_main", loop=True)
