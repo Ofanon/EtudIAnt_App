@@ -84,8 +84,6 @@ if "started_user" in st.session_state:
                     st.success("Bien joué, tu as trouvé la bonne réponse !")
                     st.session_state.correct_answers_user += 1
                     st.session_state.xp_updated_user = True
-                    with st.spinner("Sauvegarde de la réponse dans la base de données."):
-                        user_manager.add_correct_incorrect_answer(user_id=st.session_state.user_id)
 
                 else:
                     st.write(st.session_state.explanation_user)
