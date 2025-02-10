@@ -20,7 +20,7 @@ with col2:
 
 with tab1:
     if leaderboard_answers:
-        st.subheader("Classements des joueurs(euses) qui ont le plus de bonnes réponse :")
+        st.subheader("Classement des joueurs(euses) qui ont le plus de bonnes réponses :")
 
         for i, (user_id, corrects_answers) in enumerate(leaderboard_answers, start=1):
             if i == 1:
@@ -37,7 +37,7 @@ with tab1:
 with tab2:
     if leaderboard_xp:
 
-        st.subheader("Classements des joueurs(euses) qui ont le plus de Points d'Experience 🔥 :")
+        st.subheader("Classement des joueurs(euses) qui ont le plus de Points d'Experience 🔥 :")
 
         for i, (user_id, corrects_answers) in enumerate(leaderboard_xp, start=1):
             if i == 1:

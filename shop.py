@@ -49,7 +49,7 @@ with st.container():
             else:
                 st.error("Pas assez de Points d'Experience 🔥.")
 
-st.subheader("🎁 Cadeau quotidient")
+st.subheader("🎁 Cadeau quotidien")
 st.write("Récupère **3 ⭐ gratuitement** chaque jour ici !")
 
 if st.button("🎁 Récuperer 3 Etoiles gratuites", disabled=not user_manager.can_get_gift(user_id=st.session_state.user_id)):
