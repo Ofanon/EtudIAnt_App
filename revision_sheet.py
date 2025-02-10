@@ -4,6 +4,9 @@ import user_manager
 import time
 import re
 import random
+import streamlit as st
+from docx import Document
+from io import BytesIO
 
 genai.configure(api_key=st.secrets[random.choice(["API_KEY1", "API_KEY2"])])
 model = genai.GenerativeModel(model_name="gemini-1.5-flash-002")
@@ -14,12 +17,9 @@ if "revision_sheet_created" not in st.session_state:
     st.session_state.revision_subject = None
     st.session_state.sheet = None
     st.session_state.sheet_already_written = False
+    st.toast(f"Bienvenue dans le créateur de fiche de révison {st.session_state.user_id} !")
 
 st.title("📝 Créateur de fiche de révision")
-
-import streamlit as st
-from docx import Document
-from io import BytesIO
 
 def create_revision_sheet(title, text):
     final_text = re.sub(r'["#*"]', "", text)

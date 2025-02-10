@@ -37,6 +37,7 @@ with st.spinner("La page est en cours de chargement..."):
         st.session_state.explanation_user = None
         st.session_state.note_user = None
         st.session_state.points_user = None
+        st.toast(f"Bienvenue dans le quiz des points faibles {st.session_state.user_id} ! Tu vas y arriver !")
 
 if not st.session_state.started_user:
     st.subheader("Es-tu prêt(e) à commencer le quiz des points faibles ?")

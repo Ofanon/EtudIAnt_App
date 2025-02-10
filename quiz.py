@@ -41,6 +41,7 @@ with st.spinner("La page est en cours de chargement..."):
         st.session_state.explanation = None
         st.session_state.note = None
         st.session_state.points = None
+        st.toast(f"Bienvenue dans le quiz interactif {st.session_state.user_id} ! Apprends bien !")
 
 disable_buttons = False
 if "started" in st.session_state:
