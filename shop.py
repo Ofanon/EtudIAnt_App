@@ -18,6 +18,9 @@ with header_col1:
 with header_col2:
     st_lottie(st.session_state.robot_star, height=200, key="robot", loop=True)
 
+st.markdown(" ")
+
+st.subheader("⭐ Etoiles")
 with st.container():
     col1, col2, col3 = st.columns(3, border=True, vertical_alignment="bottom")
 
@@ -48,6 +51,8 @@ with st.container():
                 st.rerun()
             else:
                 st.error("Pas assez de Points d'Experience 🔥.")
+
+st.markdown(" ")
 
 st.subheader("🎁 Cadeau quotidien")
 with st.container(key="gift", border=True):
