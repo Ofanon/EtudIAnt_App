@@ -18,6 +18,9 @@ if st.session_state.user_connected is True:
             st.session_state.pages = {}
             st.session_state.user_connected = False
             st.rerun()
+    
+    with st.sidebar:
+        st.warning("Attention ! L'EtudIAnt est en version bêta.")
 
 if len(st.session_state.pages) > 0:
     pg = st.navigation(pages=st.session_state.pages)
