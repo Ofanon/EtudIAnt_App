@@ -88,7 +88,6 @@ if "started_user" in st.session_state:
                 else:
                     st.write(st.session_state.explanation_user)
                     st.error(f"Raté, la bonne réponse était : {st.session_state.correct_answer_user}")
-                    user_manager.add_correct_incorrect_answer(user_id=st.session_state.user_id, correct=False)
 
             if st.session_state.verified_user == True:
                 if st.button("Continuer"):

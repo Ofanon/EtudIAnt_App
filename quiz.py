@@ -89,17 +89,11 @@ if "started" in st.session_state:
                     user_manager.add_xp(user_id=st.session_state.user_id, points=30)
                     st.success("Bien joué, tu as trouvé la bonne réponse !")
                     st.session_state.correct_answers += 1
-                    if user_manager.add_correct_incorrect_answer(user_id=st.session_state.user_id) is not True:
-                        st.error("Erreur lors de l'enregistrement de la réponse.")
-                        st.rerun()
                     st.session_state.xp_updated = True
 
                 else:
 
                     st.error(f"Raté, la bonne réponse était : {st.session_state.correct_answer}")
-                    if user_manager.add_correct_incorrect_answer(user_id=st.session_state.user_id, correct=False) is not True:
-                        st.error("Erreur lors de l'enregistrement de la réponse.")
-                        st.rerun()
                 st.write(st.session_state.explanation)
 
             if st.session_state.verified == True:
