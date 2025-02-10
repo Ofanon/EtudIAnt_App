@@ -19,7 +19,7 @@ with header_col2:
     st_lottie(st.session_state.robot_star, height=400, key="robot", loop=True)
 
 with st.container():
-    col1, col2, col3 = st.columns(3, border=True)
+    col1, col2, col3 = st.columns(3, border=True, vertical_alignment="bottom")
 
     with col1:
         st.image(image="5_Stars.png", width=140)
