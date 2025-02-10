@@ -50,7 +50,8 @@ with st.container():
                 st.error("Pas assez de Points d'Experience 🔥.")
 
 st.subheader("🎁 Cadeau quotidien")
-with st.container(key="gift"):
+with st.container(key="gift", border=True):
+    st.write("Récupère **3 ⭐ gratuitement** chaque jour ici !")
     if st.button("🎁 Récuperer 3 ⭐ gratuitement", disabled=not user_manager.can_get_gift(user_id=st.session_state.user_id)):
         user_manager.update_gift_date(user_id=st.session_state.user_id)
         user_manager.reset_daily_credits(user_id=st.session_state.user_id)
