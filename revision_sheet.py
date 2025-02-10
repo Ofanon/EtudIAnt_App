@@ -41,8 +41,8 @@ def stream_text(text):
 
 if not st.session_state.revision_sheet_created:
     col1, col2 = st.columns(2)
+    st.subheader("Sur quoi veux-tu créer ta fiche de révision ?")
     with col1:
-        st.subheader("Sur quoi veux-tu créer ta fiche de révision ?")
         subject = st.selectbox("📚 **Sélectionne la matière de la fiche de révision :** ", ["Français", "Mathématiques", "Histoire","Géographie","EMC", "Sciences et Vie de la Terre", "Physique Chimie","Technologie", "Anglais","Allemand", "Espagnol"], )
     with col2:
         prompt = st.text_input("📝 **Sujet de la fiche de révision :**", placeholder="Ex : la Seconde Guerre Mondiale")
