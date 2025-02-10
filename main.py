@@ -13,7 +13,7 @@ col1, col2 = st.columns(2)
 with col2:
     st.subheader("🎯 Comment ça marche ?")
     st.markdown("""
-    - **L'EtudIAnt** est une **Intelligence Artificielle** qui vous permet d'etudier et d'apprendre !
+    - **L'EtudIAnt** est une **Intelligence Artificielle** qui vous permet d'étudier et d'apprendre !
                    
     - **Gagne des Points d'Expérience** 🔥 en utilisant les services (quizs, fiches de révision) pour acheter des **Étoiles** ⭐ !
                 
