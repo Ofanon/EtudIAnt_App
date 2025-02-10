@@ -5,6 +5,7 @@ if "pages" not in st.session_state:
     st.session_state.pages = {}
     st.session_state.user_connected = False
 
+st.logo(image="etudiant_logo.png", icon_image="etudiant_icon_logo.png")
 if st.session_state.user_connected is True:
     with st.sidebar:
         st.write(f"**🔥 Points d'Experience : {user_manager.get_any_user_data(user_id=st.session_state.user_id, column="xp")}**")
