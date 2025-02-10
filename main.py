@@ -13,15 +13,15 @@ col1, col2 = st.columns(2)
 with col2:
     st.subheader("🎯 Comment ça marche ?")
     st.markdown("""
-    - **L'EtudIAnt** est une **Intelligence Artificielle** basée sur le modèle d'IA de Google.
+    - **L'EtudIAnt** est une **Intelligence Artificielle** qui vous permet d'etudier et d'apprendre !
                    
-    - **Gagne des Points d'Expérience** 🔥 en utilisant les services et achète des **Étoiles** ⭐.
+    - **Gagne des Points d'Expérience** 🔥 en utilisant les services (quizs, fiches de révision) pour acheter des **Étoiles** ⭐ !
                 
     - **Les Étoiles** ⭐ te permettent d'utiliser l'IA plus longtemps !
                 
-    - 🎁 **Chaque jour, tu reçois 3 Étoiles gratuitement dans la 🛒 Boutique !**
+    - 🎁 **Chaque jour, tu reçois 3 Étoiles gratuitement dans la 🛒 Boutique (n'oublie pas de les récupérer) !**
                 
-    - 🏆 **Classement** : Fais partie des meilleurs en accumulant des points d'expérience !
+    - 🏆 **Classement** : Fais partie du **Top 3** en accumulant des points d'expérience !
     """)
 
     st.success("Bon apprentissage et amuse-toi bien ! 🎉")
