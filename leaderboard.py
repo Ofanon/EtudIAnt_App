@@ -7,9 +7,7 @@ col1, col2 = st.columns(2)
 with col1:
     st.title("🏆 Top 3 Leaderboard")
 
-leaderboard_answers = user_manager.get_leaderboard_answers(limit=3)
 leaderboard_xp = user_manager.get_leaderboard_xp(limit=3)
-tab1, tab2 = st.tabs(tabs=["Classement par nombre de bonnes réponses", "Classement par nombre de Points d'Experience 🔥"])
 
 if "robot_leaderboard" not in st.session_state:
     with open("robot_leaderboard.json","r") as f:
