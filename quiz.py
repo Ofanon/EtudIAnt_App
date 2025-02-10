@@ -50,22 +50,23 @@ if "started" in st.session_state:
         st.session_state.can_start = False
         st.subheader("Sur quoi veux-tu créer ton quiz ?")
         col1, col2 = st.columns(2)
-        with col1:
-            subject = st.selectbox("📚 **Sélectionne la matière du quiz :** ", ["Français", "Mathématiques", "Histoire","Géographie","EMC", "Sciences et Vie de la Terre", "Physique Chimie","Technologie", "Anglais","Allemand", "Espagnol"], )
-            st.session_state.user_prompt = st.text_input("📝 **Le sujet du quiz :**", placeholder="Ex : sur la révolution", disabled=disable_buttons)
-        with col2:
-            st.session_state.questions_number = st.slider("🎚 **Sélectionne le nombre de questions :**", 10, 15)
-            st.write(f"**Prix : {round(st.session_state.questions_number/8.5)} ⭐**")
-        if st.button("🚀 Créer le quiz", disabled=st.session_state.can_start):
-            if st.session_state.user_prompt != "":
-                if user_manager.use_credit(user_id=st.session_state.user_id, credits_to_use=round(st.session_state.questions_number/8.5)):
-                    disable_buttons = True
-                    st.session_state.can_start = True
-                    st.session_state.data = create_questions(level=user_manager.get_any_user_data(user_id=st.session_state.user_id, column="class_level"), subject=subject,questions=st.session_state.questions_number, prompt=st.session_state.user_prompt)
+        with st.container():
+            with col1:
+                subject = st.selectbox("📚 **Sélectionne la matière du quiz :** ", ["Français", "Mathématiques", "Histoire","Géographie","EMC", "Sciences et Vie de la Terre", "Physique Chimie","Technologie", "Anglais","Allemand", "Espagnol"], )
+                st.session_state.user_prompt = st.text_input("📝 **Le sujet du quiz :**", placeholder="Ex : sur la révolution", disabled=disable_buttons)
+            with col2:
+                st.session_state.questions_number = st.slider("🎚 **Sélectionne le nombre de questions :**", 10, 15)
+                st.write(f"**Prix : {round(st.session_state.questions_number/8.5)} ⭐**")
+            if st.button("🚀 Créer le quiz", disabled=st.session_state.can_start):
+                if st.session_state.user_prompt != "":
+                    if user_manager.use_credit(user_id=st.session_state.user_id, credits_to_use=round(st.session_state.questions_number/8.5)):
+                        disable_buttons = True
+                        st.session_state.can_start = True
+                        st.session_state.data = create_questions(level=user_manager.get_any_user_data(user_id=st.session_state.user_id, column="class_level"), subject=subject,questions=st.session_state.questions_number, prompt=st.session_state.user_prompt)
+                    else:
+                        st.error("Tu as utilisé toutes tes Etoiles, reviens demain pour utiliser l'EtudIAnt.")
                 else:
-                    st.error("Tu as utilisé toutes tes Etoiles, reviens demain pour utiliser l'EtudIAnt.")
-            else:
-                st.error("Remplis le 'sujet du quiz' pour créer le quiz interactif.")
+                    st.error("Remplis le 'sujet du quiz' pour créer le quiz interactif.")
         
         if "data" in st.session_state and st.session_state.data:
             st.session_state.current_question = st.session_state.data[st.session_state.question_count]
