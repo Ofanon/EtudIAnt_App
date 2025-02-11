@@ -20,7 +20,7 @@ with st.container(border=True, key="stats_2"):
     if st.session_state.stats_subject:
         progression_df = user_manager.progression_user(user_id=st.session_state.user_id, subject=st.session_state.stats_subject)
 
-    if not progression_df.empty:
+    if progression_df is not None and not progression_df.empty:
         dates = progression_df["Date"].astype(str).tolist()
         scores = progression_df["Bonnes Réponses"].tolist()
 
