@@ -134,8 +134,8 @@ def get_users_number():
     cursor.execute("SELECT COUNT(*) FROM users;")
     return cursor.fetchone()[0]
 
-def insert_quiz(user_id, subject, correct_answers, wrong_answers, questions_number):
-    cursor.execute("INSERT INTO quizs (user_id, created_at, subject, correct_answers, wrong_answers, questions_number) VALUES (%s, %s, %s, %s, %s)", (user_id, datetime.now(), subject, correct_answers, wrong_answers, questions_number))
+def insert_quiz(user_id, subject, correct_answers, wrong_answers):
+    cursor.execute("INSERT INTO quizs (user_id, created_at, subject, correct_answers, wrong_answers) VALUES (%s, %s, %s, %s, %s)", (user_id, datetime.now(), subject, correct_answers, wrong_answers))
     conn.commit()
     return True
 
@@ -170,6 +170,7 @@ def progression_user(user_id, subject):
     rows = cursor.fetchall()
     df = pd.DataFrame(rows, columns=["Date", "Bonnes Réponses"])
     return df
+
 def get_average_quiz_score(user_id):
     query = "SELECT AVG(correct_answers) FROM quizs WHERE user_id = %s"
     cursor.execute(query, (user_id,))
