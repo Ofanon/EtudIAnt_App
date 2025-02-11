@@ -12,7 +12,7 @@ st.title("🤯 Quiz des points faibles")
 
 def create_questions(level, subject):
     with st.spinner("La création du quiz des points faibles est en cours..."):
-        response_ai = model.generate_content(f"Crée un QCM de 10 questions de niveau {level} en {subject}. Le quiz doit porter sur des chapitres de l'année. L'utilisateur a a des difficultés dans cette matière donc rend le quiz fun (avec des emojis par exemple). Toutes les réponses doivent être dans un container JSON avec : question_number , question , choices , correct_answer , explanation.")
+        response_ai = model.generate_content(f"Crée un QCM de 7 questions de niveau {level} en {subject}. Le quiz doit porter sur des chapitres de l'année. L'utilisateur a a des difficultés dans cette matière donc rend le quiz fun (avec des emojis par exemple). Toutes les réponses doivent être dans un container JSON avec : question_number , question , choices , correct_answer , explanation.")
     match = re.search(r'\[.*\]', response_ai.text, re.DOTALL)
     if match:
             json_text = match.group(0)
@@ -69,7 +69,7 @@ if "started_user" in st.session_state:
 
     if st.session_state.started_user:
         if not st.session_state.question_count_user > 9:
-            st.progress(st.session_state.question_count_user/10)
+            st.progress(st.session_state.question_count_user/7)
             disable_radio = st.session_state.verified_user
             disable_verify = st.session_state.verified_user
             st.subheader(st.session_state.question_user)
@@ -81,14 +81,13 @@ if "started_user" in st.session_state:
 
             if st.session_state.verified_user and not st.session_state.xp_updated_user:
                 if user_repsponse == st.session_state.correct_answer_user:
-                    user_manager.add_xp(user_id=st.session_state.user_id, points=30)
                     st.success("Bien joué, tu as trouvé la bonne réponse !")
                     st.session_state.correct_answers_user += 1
                     st.session_state.xp_updated_user = True
 
                 else:
-                    st.write(st.session_state.explanation_user)
                     st.error(f"Raté, la bonne réponse était : {st.session_state.correct_answer_user}")
+                st.info(st.session_state.explanation_user)
 
             if st.session_state.verified_user == True:
                 if st.button("Continuer"):
@@ -105,12 +104,14 @@ if "started_user" in st.session_state:
                     else:
                         st.rerun()
         else:
-            st.session_state.note_user = round((st.session_state.correct_answers_user / 10) * 20)
+            st.session_state.note_user = round((st.session_state.correct_answers_user / 7) * 20)
             st.subheader(f"Bravo ! Le quiz est terminé !")
             st.subheader(f"Ta note est de {st.session_state.note_user}/20 !")
             st.balloons()
             if st.button("Refaire un autre quiz"):
-                user_manager.add_xp(user_id=st.session_state.user_id, points=150)
+                if st.session_state.xp_updated_user is not True:
+                    user_manager.add_xp(user_id=st.session_state.user_id, points=st.session_state.correct_answers_user*30)
+                    st.session_state.xp_updated_user = True
                 del st.session_state.started_user
                 st.session_state.can_start_user = False
                 st.rerun()
