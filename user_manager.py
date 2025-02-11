@@ -62,13 +62,16 @@ def add_credits(user_id, xp_used, amount):
 def use_credit(user_id, credits_to_use=1):
     cursor.execute("SELECT credits FROM users WHERE user_id = %s;", (user_id,))
     credits = cursor.fetchone()
-
-    if credits and credits[0] >= credits_to_use:
-        cursor.execute("UPDATE users SET credits = credits - %s WHERE user_id = %s;", (credits_to_use, user_id))
-        conn.commit()
-        return True
-    else:
-        return False
+    try:
+        if credits and credits[0] >= credits_to_use:
+            cursor.execute("UPDATE users SET credits = credits - %s WHERE user_id = %s;", (credits_to_use, user_id))
+            conn.commit()
+            return True
+        else:
+            return False
+    except psycopg2.Error:
+        conn.rollback()
+        return False, "error"
 
 def can_get_gift(user_id):
     today = datetime.now().strftime("%Y-%m-%d")
@@ -107,8 +110,11 @@ def get_user_data(user_id):
     return cursor.fetchone()
 
 def get_any_user_data(user_id, column):
-    cursor.execute(f"SELECT {column} FROM users WHERE user_id = %s;", (user_id,))
-    data = cursor.fetchone()
+    try:
+        cursor.execute(f"SELECT {column} FROM users WHERE user_id = %s;", (user_id,))
+        data = cursor.fetchone()
+    except psycopg2.Error:
+        conn.rollback()
     return data[0] if data else None
 
 def add_correct_incorrect_answer(user_id, correct=True):
@@ -127,6 +133,8 @@ def get_users_number():
     cursor.execute("SELECT COUNT(*) FROM users;")
     return cursor.fetchone()[0]
 
+def insert_quiz(user_id):
+    cursor
 def is_user_profile_complete(user_id):
     cursor.execute("""
         SELECT favorite_subject, least_favorite_subject, class_level 
