@@ -19,7 +19,7 @@ if st.session_state.user_connected is True:
             st.session_state.user_connected = False
             st.rerun()
     with st.sidebar:
-        st.success("**La page 'Ma progression' est maintenant disponible ! Les données sont prises en compte à partir du 11/02/2025.**")
+        st.success("**La page 'Ma progression' est maintenant disponible ! Les données sont prises en compte depuis le 11/02/2025.**")
     with st.sidebar:
         st.info("**Attention** ! L'EtudIAnt est en version bêta. Il est possible que tu tombes sur certains bugs, n'hésite pas à changer de page sur le site pour résoudre le problème.")
 
