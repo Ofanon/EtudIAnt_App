@@ -4,8 +4,7 @@ from datetime import datetime
 import streamlit as st
 import pandas as pd
 
-#conn = psycopg2.connect(st.secrets["DATABASE_URL"])
-conn = psycopg2.connect("postgresql://postgres.kejtfopiaosjpmrstizv:2xckEY7SmKX9HeE1@aws-0-eu-central-1.pooler.supabase.com:6543/postgres")
+conn = psycopg2.connect(st.secrets["DATABASE_URL"])
 cursor = conn.cursor()
 
 def hash_password(password):
@@ -158,15 +157,16 @@ def get_total_quiz_count(user_id):
     result = cursor.fetchone()
     return result[0] if result[0] is not None else 0
 
-def progression_user(user_id):
+def progression_user(user_id, subject):
     query = """
         SELECT created_at, SUM(correct_answers) 
         FROM quizs 
-        WHERE user_id = %s 
+        WHERE user_id = %s
+        AND subject = %s
         GROUP BY created_at 
         ORDER BY created_at ASC
         """
-    cursor.execute(query, (user_id,))
+    cursor.execute(query, (user_id, subject))
     rows = cursor.fetchall()
     df = pd.DataFrame(rows, columns=["Date", "Bonnes Réponses"])
     return df

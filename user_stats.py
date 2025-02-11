@@ -10,13 +10,13 @@ if "stats_subject" not in st.session_state:
 st.info("Données prises en compte depuis le 11/02/2025.")
 
 with st.container(border=True, key="stats_1"):
-    st.subheader(f"🎯 Tu as complété {user_manager.get_total_quiz_count(user_id="oscar")} quizs interactifs !")
+    st.subheader(f"🎯 Tu as complété {user_manager.get_total_quiz_count(user_id=st.session_state.user_id)} quizs interactifs !")
     st.subheader(f"📈 Ta moyenne en quiz est de {user_manager.get_average_quiz_score(user_id="oscar")} bonnes réponses !")
 
 with st.container(border=True, key="stats_2"):
-    st.session_state.stats_subject = st.selectbox("Mes matières de quizs", user_manager.get_stats(user_id="oscar", column="subject"))
+    st.session_state.stats_subject = st.selectbox("Mes matières de quizs", user_manager.get_stats(user_id=st.session_state.user_id, column="subject"))
     if st.session_state.stats_subject:
-        progression_df = user_manager.progression_user(user_id="oscar")
+        progression_df = user_manager.progression_user(user_id=st.session_state.user_id, subject=st.session_state.stats_subject)
 
     if not progression_df.empty:
         dates = progression_df["Date"].astype(str).tolist()
