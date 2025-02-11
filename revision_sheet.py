@@ -42,7 +42,7 @@ def stream_text(text):
 if not st.session_state.revision_sheet_created:
     col1, col2 = st.columns(2)
     st.subheader("Sur quoi veux-tu créer ta fiche de révision ?")
-    st.session_state.revision_subject = st.selectbox("📚 **Sélectionne la matière de la fiche de révision :** ", ["Français", "Mathématiques", "Histoire","Géographie","EMC", "Sciences et Vie de la Terre", "Physique Chimie","Technologie", "Anglais","Allemand", "Espagnol"], )
+    subject = st.selectbox("📚 **Sélectionne la matière de la fiche de révision :** ", ["Français", "Mathématiques", "Histoire","Géographie","EMC", "Sciences et Vie de la Terre", "Physique Chimie","Technologie", "Anglais","Allemand", "Espagnol"], )
     prompt = st.text_input("📝 **Sujet de la fiche de révision :**", placeholder="Ex : la Seconde Guerre Mondiale")
     difficulty_user = st.text_input("🤯 **Tes difficultés (optionel) :**", placeholder="Ex : les dates")
     st.write("**Prix : 1 ⭐**")
@@ -57,7 +57,7 @@ if not st.session_state.revision_sheet_created:
                 if difficulty_user:
                     optional_prompt = f"L'utilisateur a du mal avec : {difficulty_user}. Concentre toi là dessus."
                 with st.spinner("L'EtudIAnt réfléchit..."):
-                    response = model.generate_content(f"Crée une petite fiche de révision de niveau {user_manager.get_any_user_data(user_id=st.session_state.user_id, column="class_level")} qui peut tenir sur une feuille A4 et de sujet : {st.session_state.revision_subject}. Sans tableaux. {optional_prompt}")
+                    response = response = model.generate_content(f"Crée une petite fiche de révision de niveau {user_manager.get_any_user_data(user_id=st.session_state.user_id, column='class_level')} qui peut tenir sur une feuille A4 en {subject} sur le sujet suivant : {prompt}. Sans tableaux. {optional_prompt}")
                 st.session_state.revision_sheet = response.text
                 st.session_state.revision_sheet_created = True
             else:
