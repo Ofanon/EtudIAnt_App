@@ -137,6 +137,11 @@ def insert_quiz(user_id, subject, correct_answers, wrong_answers):
     cursor.execute("INSERT INTO quizs (user_id, created_at, subject, correct_answers, wrong_answers) VALUES (%s, %s, %s, %s, %s)", (user_id, datetime.now(), subject, correct_answers, wrong_answers))
     conn.commit()
     return True
+
+def get_stats(user_id, column):
+    cursor.execute(f"SELECT {column} FROM quizs WHERE user_id = %s;")
+    rows = cursor.fetchall()
+    return [rows[0] for row in rows]
     
 def is_user_profile_complete(user_id):
     cursor.execute("""
