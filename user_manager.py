@@ -158,17 +158,24 @@ def get_total_quiz_count(user_id):
     return result[0] if result[0] is not None else 0
 
 def progression_user(user_id, subject):
-    query = """
+    conn = psycopg2.connect(st.secrets["DATABASE_URL"])
+    cursor = conn.cursor()
+
+     query = """
         SELECT created_at, SUM(correct_answers) 
         FROM quizs 
         WHERE user_id = %s
         AND subject = %s
         GROUP BY created_at 
         ORDER BY created_at ASC
-        """
+    """
     cursor.execute(query, (user_id, subject))
     rows = cursor.fetchall()
+
+    if not rows:
+        return pd.DataFrame(columns=["Date", "Bonnes Réponses"])  # DataFrame vide pour éviter l'erreur
     df = pd.DataFrame(rows, columns=["Date", "Bonnes Réponses"])
+    df["Date"] = pd.to_datetime(df["Date"]).dt.strftime("%Y-%m-%d")
     return df
 
 def get_average_quiz_score(user_id):
