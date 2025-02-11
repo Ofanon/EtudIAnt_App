@@ -39,6 +39,7 @@ with st.spinner("La page est en cours de chargement..."):
         st.session_state.wrong_answers= 0
         st.session_state.correct_answers = 0
         st.session_state.verified = False
+        st.session_state.quiz_saved = False
         st.session_state.explanation = None
         st.session_state.note = None
         st.session_state.points = None
@@ -59,6 +60,7 @@ if "started" in st.session_state:
                 st.session_state.questions_number = st.slider("🎚 **Sélectionne le nombre de questions :**", 6, 15)
                 st.write(f"**Prix : {round(st.session_state.questions_number/8.5)} ⭐**")
             if st.button("🚀 Créer le quiz", disabled=st.session_state.can_start):
+                st.session_state.quiz_saved = False
                 if st.session_state.user_prompt != "":
                     if user_manager.use_credit(user_id=st.session_state.user_id, credits_to_use=round(st.session_state.questions_number/8.5)):
                         disable_buttons = True
@@ -122,9 +124,11 @@ if "started" in st.session_state:
             st.subheader(f"Ta note est de {st.session_state.note}/20 !")
             user_manager.add_xp(user_id=st.session_state.user_id, points=st.session_state.correct_answers * 30)
             st.balloons()
-            with st.spinner("Le quiz est en cours d'enregistrement..."):
-                if user_manager.insert_quiz(user_id=st.session_state.user_id, subject=st.session_state.subject, correct_answers=st.session_state.correct_answers, wrong_answers=st.session_state.wrong_answers):
-                    st.success("Le quiz a été enregistré avec succès !")
+            if st.session_state.quiz_saved is not True:
+                with st.spinner("Le quiz est en cours d'enregistrement..."):
+                    if user_manager.insert_quiz(user_id=st.session_state.user_id, subject=st.session_state.subject, correct_answers=st.session_state.correct_answers, wrong_answers=st.session_state.wrong_answers):
+                        st.success("Le quiz a été enregistré avec succès !")
+                        st.session_state.quiz_saved = True
             if st.button("Refaire un autre quiz"):
                 user_manager.add_xp(user_id=st.session_state.user_id, points=50)
                 del st.session_state.started
