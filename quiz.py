@@ -125,7 +125,6 @@ if "started" in st.session_state:
             with st.spinner("Le quiz est en cours d'enregistrement..."):
                 if user_manager.insert_quiz(user_id=st.session_state.user_id, subject=st.session_state.subject, correct_answers=st.session_state.correct_answers, wrong_answers=st.session_state.wrong_answers):
                     st.success("Le quiz a été enregistré avec succès !")
-            st.info("Conseil : Ne quitte pas le quiz avant que l'enregistrement soit fini.")
             if st.button("Refaire un autre quiz"):
                 user_manager.add_xp(user_id=st.session_state.user_id, points=50)
                 del st.session_state.started
