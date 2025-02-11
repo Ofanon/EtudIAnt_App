@@ -2,8 +2,10 @@ import psycopg2
 import hashlib
 from datetime import datetime
 import streamlit as st
+import pandas as pd
 
-conn = psycopg2.connect(st.secrets["DATABASE_URL"]) 
+#conn = psycopg2.connect(st.secrets["DATABASE_URL"])
+conn = psycopg2.connect("postgresql://postgres.kejtfopiaosjpmrstizv:2xckEY7SmKX9HeE1@aws-0-eu-central-1.pooler.supabase.com:6543/postgres")
 cursor = conn.cursor()
 
 def hash_password(password):
@@ -133,16 +135,47 @@ def get_users_number():
     cursor.execute("SELECT COUNT(*) FROM users;")
     return cursor.fetchone()[0]
 
-def insert_quiz(user_id, subject, correct_answers, wrong_answers):
-    cursor.execute("INSERT INTO quizs (user_id, created_at, subject, correct_answers, wrong_answers) VALUES (%s, %s, %s, %s, %s)", (user_id, datetime.now(), subject, correct_answers, wrong_answers))
+def insert_quiz(user_id, subject, correct_answers, wrong_answers, questions_number):
+    cursor.execute("INSERT INTO quizs (user_id, created_at, subject, correct_answers, wrong_answers, questions_number) VALUES (%s, %s, %s, %s, %s)", (user_id, datetime.now(), subject, correct_answers, wrong_answers, questions_number))
     conn.commit()
     return True
 
 def get_stats(user_id, column):
-    cursor.execute(f"SELECT {column} FROM quizs WHERE user_id = %s;")
+    query = f"SELECT {column} FROM quizs WHERE user_id = %s ORDER BY subject"
+    cursor.execute(query, (user_id,))
     rows = cursor.fetchall()
-    return [rows[0] for row in rows]
-    
+    return [row[0] for row in rows]
+
+def get_stats_number(user_id, column, subject):
+    query = f"SELECT SUM({column}) FROM quizs WHERE user_id = %s AND subject = %s"
+    cursor.execute(query, (user_id, subject))
+    result = cursor.fetchone()
+    return result[0] if result[0] is not None else 0
+
+def get_total_quiz_count(user_id):
+    query = "SELECT COUNT(*) FROM quizs WHERE user_id = %s"
+    cursor.execute(query, (user_id,))
+    result = cursor.fetchone()
+    return result[0] if result[0] is not None else 0
+
+def progression_user(user_id):
+    query = """
+        SELECT created_at, SUM(correct_answers) 
+        FROM quizs 
+        WHERE user_id = %s 
+        GROUP BY created_at 
+        ORDER BY created_at ASC
+        """
+    cursor.execute(query, (user_id,))
+    rows = cursor.fetchall()
+    df = pd.DataFrame(rows, columns=["Date", "Bonnes Réponses"])
+    return df
+def get_average_quiz_score(user_id):
+    query = "SELECT AVG(correct_answers) FROM quizs WHERE user_id = %s"
+    cursor.execute(query, (user_id,))
+    result = cursor.fetchone()
+    return round(result[0], 2) if result[0] is not None else 0.0
+
 def is_user_profile_complete(user_id):
     cursor.execute("""
         SELECT favorite_subject, least_favorite_subject, class_level 

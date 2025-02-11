@@ -8,3 +8,5 @@ streamlit-extras
 python-docx
 hydralit-components
 psycopg2-binary
+streamlit-echarts
+pandas
