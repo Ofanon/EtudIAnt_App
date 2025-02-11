@@ -63,7 +63,7 @@ if "started" in st.session_state:
                     if user_manager.use_credit(user_id=st.session_state.user_id, credits_to_use=round(st.session_state.questions_number/8.5)):
                         disable_buttons = True
                         st.session_state.can_start = True
-                        st.session_state.data = create_questions(level=user_manager.get_any_user_data(user_id=st.session_state.user_id, column="class_level"), subject=st.session_state.subject,questions=st.session_state.questions_number, prompt=st.session_state.user_prompt)
+                        st.session_state.data = create_questions(level=user_manager.get_any_user_data(user_id=st.session_state.user_id, column="class_level"), subject=st.session_state.subject ,questions=st.session_state.questions_number, prompt=st.session_state.user_prompt)
                     else:
                         st.error("Tu as utilisé toutes tes Etoiles, reviens demain pour utiliser l'EtudIAnt.")
                 else:
