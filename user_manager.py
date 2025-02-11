@@ -161,7 +161,7 @@ def progression_user(user_id, subject):
     conn = psycopg2.connect(st.secrets["DATABASE_URL"])
     cursor = conn.cursor()
 
-     query = """
+    query = """
         SELECT created_at, SUM(correct_answers) 
         FROM quizs 
         WHERE user_id = %s
