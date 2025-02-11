@@ -11,7 +11,7 @@ if "connexion_type" not in st.session_state:
     st.session_state.user_id = None
     st.session_state.connect_questions_user = False
 
-main_pages = [st.Page("main.py", title="🏠 Accueil"), st.Page("shop.py", title="🛒 Boutique"), st.Page("quiz.py", title="🎯 Quiz Interactif"), st.Page("quiz_user.py", title="🤯 Quiz des points faibles"), st.Page("revision_sheet.py", title="📝 Créateur de fiche de révision"), st.Page("leaderboard.py", title="🏆 Leaderboard"), st.Page("user_stats.py",title="🚀Ma progression")]
+main_pages = [st.Page("main.py", title="🏠 Accueil"), st.Page("shop.py", title="🛒 Boutique"), st.Page("quiz.py", title="🎯 Quiz Interactif"), st.Page("quiz_user.py", title="🤯 Quiz des points faibles"), st.Page("revision_sheet.py", title="📝 Créateur de fiche de révision"), st.Page("leaderboard.py", title="🏆 Leaderboard"), st.Page("user_stats.py",title="🚀 Ma progression")]
 questions_page = [st.Page("questions_user.py", title="Questions")]
 
 if not st.session_state.connect_questions_user:
