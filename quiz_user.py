@@ -87,6 +87,7 @@ if "started_user" in st.session_state:
 
                 else:
                     st.error(f"Raté, la bonne réponse était : {st.session_state.correct_answer_user}")
+                    st.session_state.xp_updated_user = True
                 st.write(st.session_state.explanation_user)
 
             if st.session_state.verified_user == True:
