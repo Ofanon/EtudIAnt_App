@@ -69,7 +69,7 @@ if "started_user" in st.session_state:
 
     if st.session_state.started_user:
         if not st.session_state.question_count_user > 9:
-            st.progress(round(st.session_state.question_count_user/7))
+            st.progress(st.session_state.question_count_user/7)
             disable_radio = st.session_state.verified_user
             disable_verify = st.session_state.verified_user
             st.subheader(st.session_state.question_user)
