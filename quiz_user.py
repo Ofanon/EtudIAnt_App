@@ -49,14 +49,15 @@ if "started_user" in st.session_state:
 
     if not st.session_state.started_user:
         st.session_state.can_start_user = False
-        st.write(f"**Prix : 1 ⭐**")
-        if st.button("🚀 Commencer le quiz", disabled=st.session_state.can_start_user):
-            if user_manager.use_credit(user_id=st.session_state.user_id, credits_to_use=1):
-                disable_buttons = True
-                st.session_state.can_start_user = True
-                st.session_state.data_user = create_questions(level=user_manager.get_any_user_data(user_id=st.session_state.user_id, column="class_level"), subject=user_manager.get_any_user_data(user_id=st.session_state.user_id, column="least_favorite_subject"))
-            else:
-                st.error("Tu as utilisé toutes tes Etoiles, reviens demain pour utiliser l'EtudIAnt.")
+        with st.container(border=True):
+            st.write(f"**Prix : 1 ⭐**")
+            if st.button("🚀 Commencer le quiz", disabled=st.session_state.can_start_user):
+                if user_manager.use_credit(user_id=st.session_state.user_id, credits_to_use=1):
+                    disable_buttons = True
+                    st.session_state.can_start_user = True
+                    st.session_state.data_user = create_questions(level=user_manager.get_any_user_data(user_id=st.session_state.user_id, column="class_level"), subject=user_manager.get_any_user_data(user_id=st.session_state.user_id, column="least_favorite_subject"))
+                else:
+                    st.error("Tu as utilisé toutes tes Etoiles, reviens demain pour utiliser l'EtudIAnt.")
         
         if "data_user" in st.session_state and st.session_state.data_user:
             st.session_state.current_question_user = st.session_state.data_user[st.session_state.question_count_user]
