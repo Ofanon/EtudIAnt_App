@@ -92,7 +92,6 @@ if "started" in st.session_state:
 
             if st.session_state.verified and not st.session_state.xp_updated:
                 if user_repsponse == st.session_state.correct_answer:
-                    user_manager.add_xp(user_id=st.session_state.user_id, points=30)
                     st.success("Bien joué, tu as trouvé la bonne réponse !")
                     st.session_state.correct_answers += 1
                     st.session_state.xp_updated = True
@@ -121,6 +120,7 @@ if "started" in st.session_state:
             st.session_state.note = round((st.session_state.correct_answers / st.session_state.questions_number) * 20)
             st.subheader(f"Bravo ! Le quiz est terminé !")
             st.subheader(f"Ta note est de {st.session_state.note}/20 !")
+            user_manager.add_xp(user_id=st.session_state.user_id, points=st.session_state.correct_answers * 30)
             st.balloons()
             with st.spinner("Le quiz est en cours d'enregistrement..."):
                 if user_manager.insert_quiz(user_id=st.session_state.user_id, subject=subject, correct_answers=st.session_state.correct_answers, wrong_answers=st.session_state.wrong_answers):
