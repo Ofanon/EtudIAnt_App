@@ -141,6 +141,7 @@ def insert_quiz(user_id, subject, correct_answers, wrong_answers):
     except psycopg2.Error:
         conn.rollback()
         return False
+    
 def is_user_profile_complete(user_id):
     cursor.execute("""
         SELECT favorite_subject, least_favorite_subject, class_level 
