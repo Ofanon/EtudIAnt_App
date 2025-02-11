@@ -11,7 +11,7 @@ header_col1, header_col2 = st.columns([4, 3], vertical_alignment="bottom")
 
 with header_col1:
     st.title("🛒 Boutique")
-    st.subheader(f"Que veux-tu acheter {st.session_state.user_id} ?")
+    st.subheader(f"Que veux-tu acheter **{st.session_state.user_id}** ?")
     st.write(f"**🔥 Points d'Experience : {user_manager.get_any_user_data(user_id=st.session_state.user_id, column="xp")}**")
     st.write(f"**⭐ Etoiles : {user_manager.get_any_user_data(user_id=st.session_state.user_id, column="credits")}**")
 
