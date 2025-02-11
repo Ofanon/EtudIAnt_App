@@ -56,7 +56,7 @@ if "started" in st.session_state:
                 st.session_state.subject = st.selectbox("📚 **Sélectionne la matière du quiz :** ", ["Français", "Mathématiques", "Histoire","Géographie","EMC", "Sciences et Vie de la Terre", "Physique Chimie","Technologie", "Anglais","Allemand", "Espagnol"], )
                 st.session_state.user_prompt = st.text_input("📝 **Le sujet du quiz :**", placeholder="Ex : sur la révolution", disabled=disable_buttons)
             with col2:
-                st.session_state.questions_number = st.slider("🎚 **Sélectionne le nombre de questions :**", 10, 15)
+                st.session_state.questions_number = st.slider("🎚 **Sélectionne le nombre de questions :**", 6, 15)
                 st.write(f"**Prix : {round(st.session_state.questions_number/8.5)} ⭐**")
             if st.button("🚀 Créer le quiz", disabled=st.session_state.can_start):
                 if st.session_state.user_prompt != "":
