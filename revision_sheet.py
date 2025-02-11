@@ -48,10 +48,7 @@ if not st.session_state.revision_sheet_created:
     with col2:
         difficulty_user = st.text_input("🤯 **Tes difficultés (optionel) :**", placeholder="Ex : les dates")
         st.write("**Prix : 1 ⭐**")
-
-optional_prompt = ""
-
-if not st.session_state.revision_sheet_created:
+    optional_prompt = ""
     if st.button("📝 Créer la fiche de révsion"):
         if subject and prompt:
             if user_manager.use_credit(user_id=st.session_state.user_id, credits_to_use=1):
