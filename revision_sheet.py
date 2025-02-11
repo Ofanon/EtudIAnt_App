@@ -51,7 +51,7 @@ optional_prompt = ""
 
 if not st.session_state.revision_sheet_created:
     if st.button("📝 Créer la fiche de révsion"):
-        if st.session_state.revision_subject and prompt:
+        if subject and prompt:
             if user_manager.use_credit(user_id=st.session_state.user_id, credits_to_use=1):
                 time.sleep(0.5)
                 if difficulty_user:
