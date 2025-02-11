@@ -87,7 +87,7 @@ if "started_user" in st.session_state:
 
                 else:
                     st.error(f"Raté, la bonne réponse était : {st.session_state.correct_answer_user}")
-                st.info(st.session_state.explanation_user)
+                st.write(st.session_state.explanation_user)
 
             if st.session_state.verified_user == True:
                 if st.button("Continuer"):
@@ -110,7 +110,7 @@ if "started_user" in st.session_state:
             st.balloons()
             if st.button("Refaire un autre quiz"):
                 if st.session_state.xp_updated_user is not True:
-                    user_manager.add_xp(user_id=st.session_state.user_id, points=st.session_state.correct_answers_user*30)
+                    user_manager.add_xp(user_id=st.session_state.user_id, points=st.session_state.correct_answers_user*15)
                     st.session_state.xp_updated_user = True
                 del st.session_state.started_user
                 st.session_state.can_start_user = False

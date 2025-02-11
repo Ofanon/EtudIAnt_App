@@ -123,7 +123,7 @@ if "started" in st.session_state:
             st.subheader(f"Bravo ! Le quiz est terminé !")
             st.subheader(f"Ta note est de {st.session_state.note}/20 !")
             if st.session_state.xp_updated is not True:
-                user_manager.add_xp(user_id=st.session_state.user_id, points=st.session_state.correct_answers * 30)
+                user_manager.add_xp(user_id=st.session_state.user_id, points=st.session_state.correct_answers * 15)
                 st.session_state.xp_updated = True
             st.balloons()
             if st.session_state.quiz_saved is not True:
