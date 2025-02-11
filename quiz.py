@@ -122,7 +122,9 @@ if "started" in st.session_state:
             st.session_state.note = round((st.session_state.correct_answers / st.session_state.questions_number) * 20)
             st.subheader(f"Bravo ! Le quiz est terminé !")
             st.subheader(f"Ta note est de {st.session_state.note}/20 !")
-            user_manager.add_xp(user_id=st.session_state.user_id, points=st.session_state.correct_answers * 30)
+            if st.session_state.xp_updated is not True:
+                user_manager.add_xp(user_id=st.session_state.user_id, points=st.session_state.correct_answers * 30)
+                st.session_state.xp_updated = True
             st.balloons()
             if st.session_state.quiz_saved is not True:
                 with st.spinner("Le quiz est en cours d'enregistrement..."):
@@ -130,7 +132,6 @@ if "started" in st.session_state:
                         st.success("Le quiz a été enregistré avec succès !")
                         st.session_state.quiz_saved = True
             if st.button("Refaire un autre quiz"):
-                user_manager.add_xp(user_id=st.session_state.user_id, points=50)
                 del st.session_state.started
                 st.session_state.can_start = False
                 st.rerun()
