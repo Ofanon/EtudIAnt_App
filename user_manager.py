@@ -134,13 +134,9 @@ def get_users_number():
     return cursor.fetchone()[0]
 
 def insert_quiz(user_id, subject, correct_answers, wrong_answers):
-    try:
-        cursor.execute("INSERT INTO quizs (user_id, created_at, subject, correct_answers, wrong_answers) VALUES (%s, %s, %s, %s, %s)", (user_id, datetime.now(), subject, correct_answers, wrong_answers))
-        conn.commit()
-        return True
-    except psycopg2.Error:
-        conn.rollback()
-        return False
+    cursor.execute("INSERT INTO quizs (user_id, created_at, subject, correct_answers, wrong_answers) VALUES (%s, %s, %s, %s, %s)", (user_id, datetime.now(), subject, correct_answers, wrong_answers))
+    conn.commit()
+    return True
     
 def is_user_profile_complete(user_id):
     cursor.execute("""
