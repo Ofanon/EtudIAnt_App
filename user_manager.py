@@ -133,8 +133,14 @@ def get_users_number():
     cursor.execute("SELECT COUNT(*) FROM users;")
     return cursor.fetchone()[0]
 
-def insert_quiz(user_id):
-    cursor
+def insert_quiz(user_id, subject, correct_answers, wrong_answers):
+    try:
+        cursor.execute("INSERT INTO quizs (user_id, created_at, subject, correct_answers, wrong_answers) VALUES (%s, %s, %s, %s, %s)", (user_id, datetime.now(), subject, correct_answers, wrong_answers))
+        conn.commit()
+        return True
+    except psycopg2.Error:
+        conn.rollback()
+        return False
 def is_user_profile_complete(user_id):
     cursor.execute("""
         SELECT favorite_subject, least_favorite_subject, class_level 

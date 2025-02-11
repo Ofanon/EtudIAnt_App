@@ -36,6 +36,7 @@ with st.spinner("La page est en cours de chargement..."):
         st.session_state.question = None
         st.session_state.choices = None
         st.session_state.correct_answer = 0
+        st.session_state.wrong_answers= 0
         st.session_state.correct_answers = 0
         st.session_state.verified = False
         st.session_state.explanation = None
@@ -99,6 +100,7 @@ if "started" in st.session_state:
                 else:
 
                     st.error(f"Raté, la bonne réponse était : {st.session_state.correct_answer}")
+                    st.session_state.wrong_answers += 1
                 st.write(st.session_state.explanation)
 
             if st.session_state.verified == True:
@@ -120,6 +122,10 @@ if "started" in st.session_state:
             st.subheader(f"Bravo ! Le quiz est terminé !")
             st.subheader(f"Ta note est de {st.session_state.note}/20 !")
             st.balloons()
+            with st.spinner("Le quiz est en cours d'enregistrement..."):
+                if user_manager.insert_quiz(user_id=st.session_state.user_id, subject=subject, correct_answers=st.session_state.correct_answers, wrong_answers=st.session_state.wrong_answers):
+                    st.success("Le quiz a été enregistré avec succès !")
+            st.info("Conseil : Ne quitte pas le quiz avant que l'enregistrement soit fini.")
             if st.button("Refaire un autre quiz"):
                 user_manager.add_xp(user_id=st.session_state.user_id, points=50)
                 del st.session_state.started
