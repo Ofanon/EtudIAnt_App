@@ -12,7 +12,7 @@ st.info("Données prises en compte depuis le 11/02/2025.")
 with st.container(border=True, key="stats_1"):
     st.subheader("🎯 Les chiffres importants :")
     st.write(f"🎯 Tu as complété {user_manager.get_total_quiz_count(user_id=st.session_state.user_id)} quizs interactifs !")
-    st.write(f"📈 Ta moyenne en quiz est de {user_manager.get_average_quiz_score(user_id=st.session_state.user_id)} bonnes réponses !")
+    st.write(f"📈 Ta moyenne est de {user_manager.get_average_quiz_score(user_id=st.session_state.user_id)} bonnes réponses par quiz interactifs !")
 
 with st.container(border=True, key="stats_2"):
     st.subheader("📈 Données des quizs :")
