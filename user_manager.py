@@ -140,7 +140,7 @@ def insert_quiz(user_id, subject, correct_answers, wrong_answers):
     return True
 
 def get_stats(user_id, column):
-    query = f"SELECT {column} FROM quizs WHERE user_id = %s ORDER BY subject"
+    query = f"SELECT DISTINCT {column} FROM quizs WHERE user_id = %s ORDER BY subject"
     cursor.execute(query, (user_id,))
     rows = cursor.fetchall()
     return [row[0] for row in rows]

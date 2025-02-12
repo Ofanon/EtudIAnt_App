@@ -96,13 +96,10 @@ if "started" in st.session_state:
                 if user_repsponse == st.session_state.correct_answer:
                     st.success("Bien joué, tu as trouvé la bonne réponse !")
                     st.session_state.correct_answers += 1
-                    st.session_state.xp_updated = True
-
                 else:
-
                     st.error(f"Raté, la bonne réponse était : {st.session_state.correct_answer}")
                     st.session_state.wrong_answers += 1
-                    st.session_state.xp_updated = True
+                st.session_state.xp_updated = True
                 st.write(st.session_state.explanation)
 
             if st.session_state.verified == True:
@@ -115,16 +112,16 @@ if "started" in st.session_state:
                         st.session_state.choices = st.session_state.current_question['choices']
                         st.session_state.correct_answer = st.session_state.current_question['correct_answer']
                         st.session_state.explanation = st.session_state.current_question['explanation']
-                        st.session_state.xp_updated = False
                         st.rerun()
                     else:
+                        st.session_state.xp_updated = False
                         st.rerun()
         else:
             st.session_state.note = round((st.session_state.correct_answers / st.session_state.questions_number) * 20)
             st.subheader(f"Bravo ! Le quiz est terminé !")
             st.subheader(f"Ta note est de {st.session_state.note}/20 !")
             if st.session_state.xp_updated is not True:
-                user_manager.add_xp(user_id=st.session_state.user_id, points=st.session_state.correct_answers * 15)
+                user_manager.add_xp(user_id=st.session_state.user_id, points=st.session_state.correct_answers * 30)
                 st.session_state.xp_updated = True
             st.balloons()
             if st.session_state.quiz_saved is not True:
