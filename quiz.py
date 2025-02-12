@@ -96,10 +96,11 @@ if "started" in st.session_state:
                 if user_repsponse == st.session_state.correct_answer:
                     st.success("Bien joué, tu as trouvé la bonne réponse !")
                     st.session_state.correct_answers += 1
+                    st.session_state.xp_updated = True
                 else:
                     st.error(f"Raté, la bonne réponse était : {st.session_state.correct_answer}")
                     st.session_state.wrong_answers += 1
-                st.session_state.xp_updated = True
+                    st.session_state.xp_updated = True
                 st.write(st.session_state.explanation)
 
             if st.session_state.verified == True:
