@@ -5,12 +5,7 @@ if "pages" not in st.session_state:
     st.session_state.pages = {}
     st.session_state.user_connected = False
 
-hide_github_icon = """
-#GithubIcon {
-  visibility: hidden;
-}
-"""
-st.markdown(hide_github_icon, unsafe_allow_html=True)
+
 
 st.logo(image="etudiant_logo_title.png", icon_image="etudiant_icon_logoV2.png", size='large')
 if st.session_state.user_connected is True:
