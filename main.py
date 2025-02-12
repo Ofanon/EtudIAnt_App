@@ -7,7 +7,7 @@ if "robot_main" not in st.session_state:
     with open("robot_main.json","r") as f:
         st.session_state.robot_main = json.load(f)
 
-st.title("📚 Bienvenue dans **l'EtudIAnt** ! 🤖")
+st.title("Apprendre mieux en s'amusant !")
 
 col1, col2 = st.columns(2)
 
