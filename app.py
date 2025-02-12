@@ -5,7 +5,18 @@ if "pages" not in st.session_state:
     st.session_state.pages = {}
     st.session_state.user_connected = False
 
-
+st.markdown(
+    """
+    <style>
+    .css-1jc7ptx, .e1ewe7hr3, .viewerBadge_container__1QSob,
+    .styles_viewerBadge__1yB5_, .viewerBadge_link__1S137,
+    .viewerBadge_text__1JaDK {
+        display: none;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
 st.logo(image="etudiant_logo_title.png", icon_image="etudiant_icon_logoV2.png", size='large')
 if st.session_state.user_connected is True:
