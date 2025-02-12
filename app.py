@@ -10,7 +10,7 @@ if st.session_state.user_connected is True:
     with st.sidebar:
         with st.container(border=True):
             st.markdown(f"**🔥 Points d'Experience : {user_manager.get_any_user_data(user_id=st.session_state.user_id, column="xp")}**")
-            st.markdown(f"**💎 Points de Classement : {user_manager.get_any_user_data(user_id=st.session_state.use_id, column="correct_answers")*10}**")
+            st.markdown(f"**💎 Points de Classement : {user_manager.get_any_user_data(user_id=st.session_state.user_id, column="correct_answers")*10}**")
             st.markdown(f"**⭐ Etoiles : {user_manager.get_any_user_data(user_id=st.session_state.user_id, column="credits")}**")
 
     with st.sidebar:
