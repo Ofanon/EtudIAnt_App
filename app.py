@@ -8,7 +8,7 @@ if "pages" not in st.session_state:
 st.markdown(
         r"""
         <style>
-        .stAppDeployButton {
+        .stBaseButton-header {
                 visibility: hidden;
             }
         </style>
