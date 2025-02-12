@@ -19,16 +19,16 @@ with col2:
 if leaderboard_xp:
 
     st.subheader("Classement des joueurs(euses) de l'EtudIAnt :")
-    st.info("Les points correspondent à 10 fois une bonne réponse dans un quiz.")
+    st.info("Les points (💎) correspondent à 10 fois une bonne réponse dans un quiz.")
 
     for i, (user_id, corrects_answers) in enumerate(leaderboard_xp, start=1):
         if i == 1:
-            st.write(f"🥇 **{i}. {user_id}** - {corrects_answers*10} points")
+            st.write(f"🥇 **{i}. {user_id}** - {corrects_answers*10} 💎")
         elif i == 2:
-            st.write(f"🥈 **{i}. {user_id}** - {corrects_answers*10} points")
+            st.write(f"🥈 **{i}. {user_id}** - {corrects_answers*10} 💎")
         elif i == 3:
-            st.write(f"🥉 **{i}. {user_id}** - {corrects_answers*10} points")
+            st.write(f"🥉 **{i}. {user_id}** - {corrects_answers*10} 💎")
         else:
-            st.write(f"✨ {i}. {user_id} - {corrects_answers*10} points")
+            st.write(f"✨ {i}. {user_id} - {corrects_answers*10} 💎")
 else:
     st.write("Personne n'a encore gagné de points ! 🚀")
