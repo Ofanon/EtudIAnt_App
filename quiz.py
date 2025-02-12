@@ -113,6 +113,7 @@ if "started" in st.session_state:
                         st.session_state.choices = st.session_state.current_question['choices']
                         st.session_state.correct_answer = st.session_state.current_question['correct_answer']
                         st.session_state.explanation = st.session_state.current_question['explanation']
+                        st.session_state.xp_updated = False
                         st.rerun()
                     else:
                         st.session_state.xp_updated = False
