@@ -18,7 +18,8 @@ with st.container(border=True, key="stats_2"):
     st.subheader("📈 Données des quizs :")
     st.session_state.stats_subject = st.selectbox("Matière du quiz :", user_manager.get_stats(user_id=st.session_state.user_id, column="subject"))
     if st.session_state.stats_subject:
-        progression_df = user_manager.progression_user(user_id=st.session_state.user_id, subject=st.session_state.stats_subject)
+        with st.spinner("Chargement des données..."):
+            progression_df = user_manager.progression_user(user_id=st.session_state.user_id, subject=st.session_state.stats_subject)
     else:
         progression_df = None
         
