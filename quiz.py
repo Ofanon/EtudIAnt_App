@@ -126,6 +126,7 @@ if "started" in st.session_state:
             st.balloons()
             if st.session_state.quiz_saved is not True:
                 with st.spinner("Le quiz est en cours d'enregistrement..."):
+                    user_manager.add_correct_incorrect_answers(user_id=st.session_state.user_id, number=st.session_state.correct_answers, correct=True)
                     if user_manager.insert_quiz(user_id=st.session_state.user_id, subject=st.session_state.subject, correct_answers=st.session_state.correct_answers, wrong_answers=st.session_state.wrong_answers):
                         st.success("Le quiz a été enregistré avec succès !")
                         st.session_state.quiz_saved = True

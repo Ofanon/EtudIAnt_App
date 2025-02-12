@@ -112,6 +112,7 @@ if "started_user" in st.session_state:
             st.balloons()
             if st.button("Refaire un autre quiz"):
                 if st.session_state.xp_updated_user is not True:
+                    user_manager.add_correct_incorrect_answers(user_id=st.session_state.user_id, number=st.session_state.correct_answers_user, correct=True)
                     user_manager.add_xp(user_id=st.session_state.user_id, points=st.session_state.correct_answers_user*15)
                     st.session_state.xp_updated_user = True
                 del st.session_state.started_user
