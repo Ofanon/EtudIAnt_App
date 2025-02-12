@@ -19,7 +19,7 @@ with col2:
 if leaderboard_xp:
 
     st.subheader("Classement des joueurs(euses) de l'EtudIAnt :")
-    st.info("Rentre dans le classement en ayant le maximum de bonnes réponses dans les quizs !")
+    st.info("Les points correspondent à 10 fois une bonne réponse dans un quiz.")
 
     for i, (user_id, corrects_answers) in enumerate(leaderboard_xp, start=1):
         if i == 1:
