@@ -1,5 +1,6 @@
 import streamlit as st
 import user_manager
+import decimal
 from streamlit_echarts import st_echarts
 
 st.title("🚀 Ma progression")

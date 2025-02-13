@@ -3,6 +3,7 @@ import hashlib
 from datetime import datetime
 import streamlit as st
 import pandas as pd
+import decimal
 
 conn = psycopg2.connect(st.secrets["DATABASE_URL"])
 cursor = conn.cursor()
@@ -160,6 +161,7 @@ def get_total_quiz_count(user_id):
     return result[0] if result[0] is not None else 0
 
 def progression_user(user_id, subject):
+
     conn = psycopg2.connect(st.secrets["DATABASE_URL"])
     cursor = conn.cursor()
 
@@ -185,9 +187,12 @@ def progression_user(user_id, subject):
     df = pd.DataFrame(rows, columns=["Date", "Bonnes Réponses", "Mauvaises Réponses", "Total Questions", "Note sur 20"])
     df["Date"] = pd.to_datetime(df["Date"]).dt.strftime("%Y-%m-%d")
 
+    # 🚀 Convertir les Decimal en float pour éviter l'erreur JSON
+    df["Bonnes Réponses"] = df["Bonnes Réponses"].apply(lambda x: float(x) if isinstance(x, decimal.Decimal) else x)
+    df["Mauvaises Réponses"] = df["Mauvaises Réponses"].apply(lambda x: float(x) if isinstance(x, decimal.Decimal) else x)
+    df["Note sur 20"] = df["Note sur 20"].apply(lambda x: float(x) if isinstance(x, decimal.Decimal) else x)
+
     return df
-
-
 
 def get_average_quiz_score(user_id):
     query = "SELECT AVG(correct_answers) FROM quizs WHERE user_id = %s"
