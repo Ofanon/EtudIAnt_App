@@ -194,7 +194,7 @@ def progression_user(user_id, subject):
     return df
 
 def get_average_quiz_score(user_id):
-    query = "SELECT AVG(correct_answers) FROM quizs WHERE user_id = %s"
+    query = "SELECT ROUND(AVG((correct_answers * 20.0) / (correct_answers + wrong_answers)), 1) AS moyenne_note FROM quizs WHERE user_id = %s;"
     cursor.execute(query, (user_id,))
     result = cursor.fetchone()
     return round(result[0], 2) if result[0] is not None else 0.0
