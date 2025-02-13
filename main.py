@@ -10,7 +10,7 @@ if "robot_main" not in st.session_state:
 st.title(f"🤖 Bienvenue sur l'EtudIAnt !")
 with st.container(border=True):
     st.subheader("Kaimana part déjà ! Donne-lui des Points d'Experience !")
-    xp = st.slider("Combien d'xp tu veux donner ?", 10, 60)
+    xp = st.slider("Combien de Points d'Experience veux-tu lui donner ?", 10, 60)
     if st.button(f"Donner {xp} à Kaimana"):
         user_manager.gift_to_kaimana(user_id=st.session_state.user_id, xp=xp)
         st.balloons()
