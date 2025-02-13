@@ -9,6 +9,7 @@ if "robot_main" not in st.session_state:
     st.session_state.kaimana_gift = True
 
 st.title(f"🤖 Bienvenue sur l'EtudIAnt !")
+
 with st.container(border=True):
     st.subheader("**Kaimana part déjà !**")
     st.write("**Donne-lui des Points d'Experience !**")
