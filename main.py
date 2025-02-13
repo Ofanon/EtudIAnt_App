@@ -6,7 +6,7 @@ import user_manager
 if "robot_main" not in st.session_state:
     with open("robot_main.json","r") as f:
         st.session_state.robot_main = json.load(f)
-    st.session_state.kaimana_gift
+    st.session_state.kaimana_gift = True
 
 st.title(f"🤖 Bienvenue sur l'EtudIAnt !")
 with st.container(border=True):
