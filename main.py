@@ -6,6 +6,7 @@ import user_manager
 if "robot_main" not in st.session_state:
     with open("robot_main.json","r") as f:
         st.session_state.robot_main = json.load(f)
+    st.session_state.kaimana_gift
 
 st.title(f"🤖 Bienvenue sur l'EtudIAnt !")
 with st.container(border=True):
@@ -13,9 +14,13 @@ with st.container(border=True):
     st.write("**Donne-lui des Points d'Experience !**")
     xp = st.slider("Combien de Points d'Experience veux-tu lui donner ?", 10, 60)
     if st.button(f"Donner {xp} Points d'Experience à Kaimana", type="primary"):
+        st.session_state.kaimana_gift = True
+        st.rerun()
+    if st.session_state.kaiman_gift is True:
         with st.spinner("Les Points d'Experience sont en chemin..."):
             user_manager.gift_to_kaimana(user_id=st.session_state.user_id, xp=xp)
             st.balloons()
+            st.session_state.kaimana_gift = False
     st.write("Les Points d'Experience donnés seront déduits de ton compte.")
 
 col1, col2 = st.columns(2)
