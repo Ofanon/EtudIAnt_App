@@ -160,36 +160,33 @@ def get_total_quiz_count(user_id):
     return result[0] if result[0] is not None else 0
 
 def progression_user(user_id, subject):
-    import psycopg2
-    import pandas as pd
-    import streamlit as st
-
     conn = psycopg2.connect(st.secrets["DATABASE_URL"])
     cursor = conn.cursor()
 
     query = """
         SELECT created_at, 
-            SUM(correct_answers) AS total_correct, 
-            SUM(wrong_answers) AS total_wrong,
-            (SUM(correct_answers) + SUM(wrong_answers)) AS total_questions,
-            (SUM(correct_answers) * 20.0) / (SUM(correct_answers) + SUM(wrong_answers)) AS note_sur_20
+               SUM(correct_answers) AS total_correct, 
+               SUM(wrong_answers) AS total_wrong,
+               (SUM(correct_answers) + SUM(wrong_answers)) AS total_questions,
+               (SUM(correct_answers) * 20.0) / (SUM(correct_answers) + SUM(wrong_answers)) AS note_sur_20
         FROM quizs
         WHERE user_id = %s
         AND subject = %s
         GROUP BY created_at
         ORDER BY created_at ASC;
+    """
 
-            """
     cursor.execute(query, (user_id, subject))
     rows = cursor.fetchall()
 
     if not rows:
-        return pd.DataFrame(columns=["Date", "Bonnes Réponses", "Mauvaises Réponses"])
-    df = pd.DataFrame(rows, columns=["Date", "Bonnes Réponses", "Mauvaises Réponses"])
+        return pd.DataFrame(columns=["Date", "Bonnes Réponses", "Mauvaises Réponses", "Note sur 20"])
+
+    df = pd.DataFrame(rows, columns=["Date", "Bonnes Réponses", "Mauvaises Réponses", "Total Questions", "Note sur 20"])
     df["Date"] = pd.to_datetime(df["Date"]).dt.strftime("%Y-%m-%d")
-    df["Note sur 20"] = (df["Bonnes Réponses"] / (df["Bonnes Réponses"] + df["Mauvaises Réponses"])) * 20
-    df.fillna(0, inplace=True)
+
     return df
+
 
 
 def get_average_quiz_score(user_id):

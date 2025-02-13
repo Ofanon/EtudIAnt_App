@@ -37,6 +37,7 @@ with st.container(border=True, key="stats_2"):
         notes = progression_df["Note sur 20"].tolist()
 
         options = {
+            "title": {"text": "Évolution de tes performances"},
             "tooltip": {"trigger": "axis"},
             "legend": {"data": ["Bonnes Réponses", "Mauvaises Réponses", "Note sur 20"]},
             "xAxis": {"type": "category", "data": dates},
@@ -57,7 +58,7 @@ with st.container(border=True, key="stats_2"):
                     "data": mauvaises_reponses,
                     "smooth": True,
                     "areaStyle": {},
-                    "lineStyle": {"width": 3, "type": "dashed"},
+                    "lineStyle": {"width": 3, "type": "dashed"},  # Style différent
                     "symbolSize": 8,
                 },
                 {
@@ -66,7 +67,7 @@ with st.container(border=True, key="stats_2"):
                     "data": notes,
                     "smooth": True,
                     "areaStyle": {},
-                    "lineStyle": {"width": 2, "color": "#ff7f0e"},
+                    "lineStyle": {"width": 2, "color": "#ff7f0e"},  # Couleur spécifique
                     "symbolSize": 8,
                 }
             ],
@@ -75,3 +76,4 @@ with st.container(border=True, key="stats_2"):
         st_echarts(options=options, height="500px")
     else:
         st.info("Pas de données pour l'instant.")
+
