@@ -170,7 +170,7 @@ def progression_user(user_id, subject):
                SUM(correct_answers) AS total_correct, 
                SUM(wrong_answers) AS total_wrong,
                (SUM(correct_answers) + SUM(wrong_answers)) AS total_questions,
-               ROUND(SUM(correct_answers) * 20.0) / (SUM(correct_answers) + SUM(wrong_answers),1) AS note_sur_20
+               ROUND((SUM(correct_answers) * 20.0) / (SUM(correct_answers) + SUM(wrong_answers)), 1) AS note_sur_20
         FROM quizs
         WHERE user_id = %s
         AND subject = %s
