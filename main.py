@@ -9,13 +9,13 @@ if "robot_main" not in st.session_state:
 
 st.title(f"🤖 Bienvenue sur l'EtudIAnt !")
 with st.container(border=True):
-    st.subheader("Kaimana part déjà !")
-    st.write("Donne-lui des Points d'Experience !")
+    st.subheader("**Kaimana part déjà !**")
+    st.write("**Donne-lui des Points d'Experience !**")
     xp = st.slider("Combien de Points d'Experience veux-tu lui donner ?", 10, 60)
     if st.button(f"Donner {xp} Points d'Experience à Kaimana"):
         user_manager.gift_to_kaimana(user_id=st.session_state.user_id, xp=xp)
         st.balloons()
-    st.write("*Les Points d'Experience donnés seront déduits de ton compte.")
+    st.write("Les Points d'Experience donnés seront déduits de ton compte.")
 col1, col2 = st.columns(2)
 with col2:
     st.subheader("🎯 Comment ça marche ?")
