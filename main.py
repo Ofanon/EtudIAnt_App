@@ -11,7 +11,7 @@ if "robot_main" not in st.session_state:
 st.title(f"🤖 Bienvenue sur l'EtudIAnt !")
 
 with st.container(border=True):
-    st.subheader("**😭 Kaimana part déjà !**")
+    st.subheader("**Kaimana part déjà 😭 !**")
     st.write("**Donne-lui des Points d'Experience 😉 !**")
     xp = st.slider("Combien de Points d'Experience veux-tu lui donner ?", 10, 60)
     if st.button(f"**Donner {xp} Points d'Experience à Kaimana**", type="primary"):
