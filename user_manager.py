@@ -200,7 +200,7 @@ def get_average_quiz_score(user_id):
     return round(result[0], 2) if result[0] is not None else 0.0
 
 def gift_to_kaimana(user_id, xp,):
-    cursor.execute(f"UPDATE users SET xp = xp + {xp} WHERE user_id = 'Kaimana';")
+    cursor.execute(f"UPDATE users SET xp = xp + {xp} WHERE user_id = %s;", ("Kaimana",))
     cursor.execute(f"UPDATE users SET xp = xp - {xp} WHERE user_id = %s;", (user_id,))
     conn.commit()
 
