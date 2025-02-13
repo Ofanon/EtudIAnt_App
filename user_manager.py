@@ -14,6 +14,8 @@ def user_exists(user_id):
     cursor.execute("SELECT user_id FROM users WHERE user_id = %s;", (user_id,))
     return cursor.fetchone() is not None
 
+cursor.execute("DELETE FROM quizs WHERE date < NOW() - INTERVAL '30 days';")
+
 def register_user(user_id, password):
     if user_exists(user_id):
         return False
