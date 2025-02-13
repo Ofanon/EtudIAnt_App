@@ -16,7 +16,7 @@ with st.container(border=True):
     if st.button(f"Donner {xp} Points d'Experience à Kaimana", type="primary"):
         st.session_state.kaimana_gift = True
         st.rerun()
-    if st.session_state.kaiman_gift is True:
+    if st.session_state.kaimana_gift is True:
         with st.spinner("Les Points d'Experience sont en chemin..."):
             user_manager.gift_to_kaimana(user_id=st.session_state.user_id, xp=xp)
             st.balloons()
