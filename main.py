@@ -12,7 +12,7 @@ with st.container(border=True):
     st.subheader("**Kaimana part déjà !**")
     st.write("**Donne-lui des Points d'Experience !**")
     xp = st.slider("Combien de Points d'Experience veux-tu lui donner ?", 10, 60)
-    if st.button(f"Donner {xp} Points d'Experience à Kaimana"):
+    if st.button(f"Donner {xp} Points d'Experience à Kaimana", type="primary"):
         user_manager.gift_to_kaimana(user_id=st.session_state.user_id, xp=xp)
         st.balloons()
     st.write("Les Points d'Experience donnés seront déduits de ton compte.")
