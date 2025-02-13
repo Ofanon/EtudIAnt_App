@@ -169,14 +169,17 @@ def progression_user(user_id, subject):
 
     query = """
         SELECT created_at, 
-        SUM(correct_answers) AS total_correct,
-        COUNT(*) - SUM(correct_answers) AS total_wrong
-        FROM quizs 
+            SUM(correct_answers) AS total_correct, 
+            SUM(wrong_answers) AS total_wrong,
+            (SUM(correct_answers) + SUM(wrong_answers)) AS total_questions,
+            (SUM(correct_answers) * 20.0) / (SUM(correct_answers) + SUM(wrong_answers)) AS note_sur_20
+        FROM quizs
         WHERE user_id = %s
         AND subject = %s
         GROUP BY created_at
-        ORDER BY created_at ASC
-    """
+        ORDER BY created_at ASC;
+
+            """
     cursor.execute(query, (user_id, subject))
     rows = cursor.fetchall()
 
