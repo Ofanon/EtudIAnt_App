@@ -1,6 +1,5 @@
 import streamlit as st
 import user_manager
-import decimal
 from streamlit_echarts import st_echarts
 
 st.title("🚀 Ma progression")
@@ -38,7 +37,6 @@ with st.container(border=True, key="stats_2"):
         notes = progression_df["Note sur 20"].tolist()
 
         options = {
-            "title": {"text": "Évolution de tes performances"},
             "tooltip": {"trigger": "axis"},
             "legend": {"data": ["Bonnes Réponses", "Mauvaises Réponses", "Note sur 20"]},
             "xAxis": {"type": "category", "data": dates},

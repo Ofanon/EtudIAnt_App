@@ -187,7 +187,6 @@ def progression_user(user_id, subject):
     df = pd.DataFrame(rows, columns=["Date", "Bonnes Réponses", "Mauvaises Réponses", "Total Questions", "Note sur 20"])
     df["Date"] = pd.to_datetime(df["Date"]).dt.strftime("%Y-%m-%d")
 
-    # 🚀 Convertir les Decimal en float pour éviter l'erreur JSON
     df["Bonnes Réponses"] = df["Bonnes Réponses"].apply(lambda x: float(x) if isinstance(x, decimal.Decimal) else x)
     df["Mauvaises Réponses"] = df["Mauvaises Réponses"].apply(lambda x: float(x) if isinstance(x, decimal.Decimal) else x)
     df["Note sur 20"] = df["Note sur 20"].apply(lambda x: float(x) if isinstance(x, decimal.Decimal) else x)
