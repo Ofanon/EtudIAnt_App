@@ -38,7 +38,7 @@ with st.container(border=True, key="stats_2"):
 
         options = {
             "tooltip": {"trigger": "axis"},
-            "legend": {"data": ["Bonnes Réponses", "Mauvaises Réponses", "Note sur 20"], "selected" : {"Bonnes réponses" : True, "Mauvaises réponses" : True, "Note sur 20" : False}},
+            "legend": {"data": ["Bonnes Réponses", "Mauvaises Réponses", "Note sur 20"], "selected" : {"Bonnes réponses" : False, "Mauvaises réponses" : False, "Note sur 20" : True}},
             "xAxis": {"type": "category", "data": dates},
             "yAxis": {"type": "value"},
             "series": [
