@@ -82,4 +82,3 @@ if st.session_state.revision_sheet_created:
             if st.button("📝 Créer une autre fiche de révision"):
                 del st.session_state.revision_sheet_created
                 st.rerun()
-            
