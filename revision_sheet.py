@@ -9,7 +9,7 @@ from docx import Document
 from io import BytesIO
 
 genai.configure(api_key=st.secrets[random.choice(["API_KEY1", "API_KEY2"])])
-model = genai.GenerativeModel(model_name="gemini-1.5-flash")
+model = genai.GenerativeModel(model_name="gemini-pro")
 
 if "revision_sheet_created" not in st.session_state:
     st.session_state.revision_sheet_created = False

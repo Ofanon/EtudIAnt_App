@@ -5,7 +5,7 @@ import PIL
 import random
 
 genai.configure(api_key=st.secrets[random.choice(["API_KEY1", "API_KEY2","API_KEY3", "API_KEY4"])])
-model = genai.GenerativeModel(model_name="gemini-1.5-flash")
+model = genai.GenerativeModel(model_name="gemini-pro")
 
 st.title("Aide aux devoirs")
 
