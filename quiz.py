@@ -6,7 +6,7 @@ import user_manager
 import random
 
 genai.configure(api_key=st.secrets[random.choice(["API_KEY1", "API_KEY2"])])
-model = genai.GenerativeModel(model_name="gemini-flash-1.0") #ma VRAIE clé api : gemini-flash-002
+model = genai.GenerativeModel(model_name="gemini-1.5-flash")
 
 st.title("🎯 Quiz interactif")
 
