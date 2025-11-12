@@ -11,7 +11,7 @@ model = genai.GenerativeModel(model_name="gemini-flash-002") #ma VRAIE clé api 
 st.title("🎯 Quiz interactif")
 
 def create_questions(level, subject, questions, prompt):
-    with st.spinner("La création du quiz est en cours...") :
+    with st.spinner("La création du quiz est en cours..."):
         response_ai = model.generate_content(f"Crée un QCM de {questions} questions de niveau {level} en {subject} et de sujet : {prompt}. Toutes les réponses doivent être dans un container JSON avec : question_number , question , choices , correct_answer , explanation.")
     match = re.search(r'\[.*\]', response_ai.text, re.DOTALL)
     if match:

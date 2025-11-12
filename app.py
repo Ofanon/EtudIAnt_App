@@ -24,16 +24,16 @@ if st.session_state.user_connected is True:
         with st.container(border=True):
             st.markdown(f"**🔥 Points d'Experience : {user_manager.get_any_user_data(user_id=st.session_state.user_id, column="xp")}**")
             st.markdown(f"**💎 Points de Classement : {user_manager.get_any_user_data(user_id=st.session_state.user_id, column="corrects_answers")*10}**")
-            st.markdown(f"**⭐ Etoiles : {user_manager.get_any_user_data(user_id=st.session_state.user_id, column="credits")}**")
+            st.markdown(f"**⭐ Étoiles : {user_manager.get_any_user_data(user_id=st.session_state.user_id, column="credits")}**")
 
     with st.sidebar:
-        if st.button("🚪 Se deconnecter", type="primary"):
+        if st.button("🚪 Se déconnecter", type="primary"):
             st.session_state.user_id = None
             st.session_state.pages = {}
             st.session_state.user_connected = False
             st.rerun()
     with st.sidebar:
-        st.info("**Attention** ! L'EtudIAnt est en version bêta. Il est possible que tu tombes sur certains bugs, n'hésite pas à changer de page sur le site pour résoudre le problème.")
+        st.info("**Attention** ! L'EtudIAnt est en version bêta. Il est possible que tu tombes sur certains bugs, n'hésites pas à changer de page sur le site pour résoudre le problème.")
 
 if len(st.session_state.pages) > 0:
     pg = st.navigation(pages=st.session_state.pages)

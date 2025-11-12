@@ -13,14 +13,14 @@ with header_col1:
     st.title("🛒 Boutique")
     st.subheader(f"Que veux-tu acheter **{st.session_state.user_id}** ?")
     st.write(f"**🔥 Points d'Experience : {user_manager.get_any_user_data(user_id=st.session_state.user_id, column="xp")}**")
-    st.write(f"**⭐ Etoiles : {user_manager.get_any_user_data(user_id=st.session_state.user_id, column="credits")}**")
+    st.write(f"**⭐ Étoiles : {user_manager.get_any_user_data(user_id=st.session_state.user_id, column="credits")}**")
 
 with header_col2:
     st_lottie(st.session_state.robot_star, height=200, key="robot", loop=True)
 
 st.markdown(" ")
 
-st.subheader("⭐ Etoiles")
+st.subheader("⭐ Étoiles")
 with st.container():
     col1, col2, col3 = st.columns(3, border=True, vertical_alignment="bottom")
 
@@ -57,7 +57,7 @@ st.markdown(" ")
 st.subheader("🎁 Cadeau quotidien")
 with st.container(key="gift", border=True):
     st.write("Récupère **3 ⭐ gratuitement** chaque jour ici !")
-    if st.button("🎁 Récuperer 3 ⭐ gratuitement", disabled=not user_manager.can_get_gift(user_id=st.session_state.user_id)):
+    if st.button("🎁 Récupérer 3 ⭐ gratuitement", disabled=not user_manager.can_get_gift(user_id=st.session_state.user_id)):
         user_manager.update_gift_date(user_id=st.session_state.user_id)
         user_manager.reset_daily_credits(user_id=st.session_state.user_id)
         st.success("Les 3 Etoiles quotidiennes ont bien été ajoutées !")

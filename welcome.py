@@ -21,7 +21,7 @@ if not st.session_state.connect_questions_user:
             if st.form_submit_button("🔑 Se connecter"):
                 if id and password:
                     if user_manager.authenticate_user(user_id=id, password=password):
-                        st.success(f"Vous êtes bien connecté !")
+                        st.success(f"Tu es bien connecté !")
                         st.session_state.user_id = id
                         if user_manager.is_user_profile_complete(user_id=st.session_state.user_id):
                             st.balloons()
