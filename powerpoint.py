@@ -7,7 +7,7 @@ from pptx import Presentation
 
 # Configuration de l'API Gemini
 genai.configure(api_key=st.secrets["API_KEY"])
-model = genai.GenerativeModel(model_name="gemini-1.5-flash-002")
+model = genai.GenerativeModel(model_name="gemini-1.5-flash")
 
 st.title("Générateur de Code PowerPoint IA")
 
