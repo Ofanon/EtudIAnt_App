@@ -6,7 +6,7 @@ import user_manager
 import random
 
 genai.configure(api_key=st.secrets[random.choice(["API_KEY1", "API_KEY2"])])
-model = genai.GenerativeModel(model_name="gemini-pro")
+model = genai.GenerativeModel(model_name="gemini-2.5-flash-lite")
 
 st.title("🎯 Quiz interactif")
 
@@ -139,4 +139,5 @@ if "started" in st.session_state:
             if st.button("Refaire un autre quiz"):
                 del st.session_state.started
                 st.session_state.can_start = False
+
                 st.rerun()
