@@ -6,7 +6,7 @@ import user_manager
 import random
 
 genai.configure(api_key=st.secrets[random.choice(["API_KEY1", "API_KEY2"])])
-model = genai.GenerativeModel(model_name="gemini-pro")
+model = genai.GenerativeModel(model_name="gemini-2.5-flash-lite")
 
 st.title("🤯 Quiz des points faibles")
 
