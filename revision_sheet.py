@@ -51,20 +51,26 @@ if not st.session_state.revision_sheet_created:
             st.write("**Prix : 1 ⭐**")
         optional_prompt = ""
         if st.button("📝 Créer la fiche de révsion"):
-            if st.session_state.revision_subject and prompt:
+            if st.session_state. revision_subject and prompt:
                 if user_manager.use_credit(user_id=st.session_state.user_id, credits_to_use=1):
                     time.sleep(0.5)
-                    if difficulty_user:
-                        optional_prompt = f"L'utilisateur a du mal avec : {difficulty_user}. Concentre toi là dessus."
+                    if difficulty_user: 
+                        optional_prompt = f"L'utilisateur a du mal avec : {difficulty_user}.  Concentre toi là dessus."
                     with st.spinner("L'EtudIAnt réfléchit..."):
-                        response = response = model.generate_content(f"Crée une petite fiche de révision de niveau {user_manager.get_any_user_data(user_id=st.session_state.user_id, column='class_level')} qui peut tenir sur une feuille A4 en {st.session_state.revision_subject} sur le sujet suivant : {prompt}. Sans tableaux. {optional_prompt}")
+                        response = model.generate_content(
+                            f"Crée une fiche de révision CONCISE de niveau {user_manager.get_any_user_data(user_id=st.session_state.user_id, column='class_level')} "
+                            f"sur :  {prompt}. {optional_prompt} "
+                            f"Format:  Utilise des listes à puces, maximum 250 mots.",
+                            generation_config=genai.types. GenerationConfig(
+                                max_output_tokens=500,
+                            )
+                        )
                     st.session_state.revision_sheet = response.text
                     st.session_state.revision_sheet_created = True
-                else:
+                else: 
                     st.error("Pas assez d'Etoiles, revient demain.")
             else:
                 st.error("Remplis tous les champs obligatoires.")
-
 if st.session_state.revision_sheet_created:
         with st.container(border=True):
             if not st.session_state.sheet_already_written:
@@ -83,3 +89,4 @@ if st.session_state.revision_sheet_created:
                 del st.session_state.revision_sheet_created
 
                 st.rerun()
+
