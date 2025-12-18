@@ -141,3 +141,4 @@ if "started" in st.session_state:
                 st.session_state.can_start = False
 
                 st.rerun()
+
