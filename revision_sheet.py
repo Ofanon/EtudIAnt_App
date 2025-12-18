@@ -9,7 +9,7 @@ from docx import Document
 from io import BytesIO
 
 genai.configure(api_key=st.secrets[random.choice(["API_KEY1", "API_KEY2"])])
-model = genai.GenerativeModel(model_name="gemini-pro")
+model = genai.GenerativeModel(model_name="gemini-2.5-flash-lite")
 
 if "revision_sheet_created" not in st.session_state:
     st.session_state.revision_sheet_created = False
@@ -81,4 +81,5 @@ if st.session_state.revision_sheet_created:
             )
             if st.button("📝 Créer une autre fiche de révision"):
                 del st.session_state.revision_sheet_created
+
                 st.rerun()
