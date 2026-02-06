@@ -1,4 +1,5 @@
 import psycopg2
+from psycopg2 import sql
 import hashlib
 from datetime import datetime
 import streamlit as st
@@ -115,7 +116,10 @@ def get_user_data(user_id):
 
 def get_any_user_data(user_id, column):
     try:
-        cursor.execute(f"SELECT {column} FROM users WHERE user_id = %s;", (user_id,))
+        query = sql.SQL("SELECT {} FROM users WHERE user_id = %s;").format(
+            sql.Identifier(column)
+        )
+        cursor.execute(query, (user_id,))
         data = cursor.fetchone()
     except psycopg2.Error:
         conn.rollback()
@@ -124,7 +128,7 @@ def get_any_user_data(user_id, column):
 def add_correct_incorrect_answers(user_id, number=1, correct=True):
     try:
         if correct is True:
-            cursor.execute(f"UPDATE users SET corrects_answers = corrects_answers + {number} WHERE user_id = %s;", (user_id,))
+            cursor.execute("UPDATE users SET corrects_answers = corrects_answers + %s WHERE user_id = %s;", (number, user_id))
             conn.commit()
         return True
     except psycopg2.Error:
@@ -140,13 +144,17 @@ def insert_quiz(user_id, subject, correct_answers, wrong_answers):
     return True
 
 def get_stats(user_id, column):
-    query = f"SELECT DISTINCT {column} FROM quizs WHERE user_id = %s ORDER BY subject"
+    query = sql.SQL("SELECT DISTINCT {} FROM quizs WHERE user_id = %s ORDER BY subject").format(
+        sql.Identifier(column)
+    )
     cursor.execute(query, (user_id,))
     rows = cursor.fetchall()
     return [row[0] for row in rows]
 
 def get_stats_number(user_id, column, subject):
-    query = f"SELECT SUM({column}) FROM quizs WHERE user_id = %s AND subject = %s"
+    query = sql.SQL("SELECT SUM({}) FROM quizs WHERE user_id = %s AND subject = %s").format(
+        sql.Identifier(column)
+    )
     cursor.execute(query, (user_id, subject))
     result = cursor.fetchone()
     return result[0] if result[0] is not None else 0
@@ -158,9 +166,6 @@ def get_total_quiz_count(user_id):
     return result[0] if result[0] is not None else 0
 
 def progression_user(user_id, subject):
-
-    conn = psycopg2.connect(st.secrets["DATABASE_URL"])
-    cursor = conn.cursor()
 
     query = """
         SELECT created_at, 
@@ -196,9 +201,9 @@ def get_average_quiz_score(user_id):
     result = cursor.fetchone()
     return round(result[0], 2) if result[0] is not None else 0.0
 
-def gift_to_kaimana(user_id, xp,):
-    cursor.execute(f"UPDATE users SET xp = xp + {xp} WHERE user_id = %s;", ("Kaimana",))
-    cursor.execute(f"UPDATE users SET xp = xp - {xp} WHERE user_id = %s;", (user_id,))
+def gift_to_kaimana(user_id, xp):
+    cursor.execute("UPDATE users SET xp = xp + %s WHERE user_id = %s;", (xp, "Kaimana"))
+    cursor.execute("UPDATE users SET xp = xp - %s WHERE user_id = %s;", (xp, user_id))
     conn.commit()
 
 def is_user_profile_complete(user_id):
