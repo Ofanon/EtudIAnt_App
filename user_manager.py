@@ -28,9 +28,10 @@ def register_user(user_id, password):
     return True
 
 def authenticate_user(user_id, password):
-    cursor.execute("SELECT password FROM users WHERE user_id = %s;", (user_id,))
-    result = cursor.fetchone()
-    return result and result[0] == hash_password(password)
+    with connection.cursor() as cursor:  # Create fresh cursor
+        cursor.execute("SELECT password FROM users WHERE user_id = %s;", (user_id,))
+        result = cursor.fetchone()
+        return result and result[0] == hash_password(password)
 
 def get_xp(user_id):
     cursor.execute("SELECT xp FROM users WHERE user_id = %s;", (user_id,))
@@ -207,4 +208,5 @@ def is_user_profile_complete(user_id):
         FROM users WHERE user_id = %s;
     """, (user_id,))
     row = cursor.fetchone()
+
     return row and all(row)
